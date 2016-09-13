@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+	</head>
+	<body>
+		<div id="box1">
+			<div id="box2">
+				<div id="box4"></div>
+				<div id="box3">
+						<img src="img/3.gif"  id="smile1"/>
+					<div><!--form标签提交数据会刷新页面，所以改用div-->
+						<input type="text" id="text"/>
+						<input type="submit" value="发送" id="btn"/>
+					</div>	
+					
+				</div>
+			</div>
+		</div>
+		<script>
+			var smile1 = document.getElementById('smile1');
+			var smile2 = document.getElementById('smile2');
+			var btn = document.getElementById('btn');
+			var div1 = document.getElementById('div1');
+			var box4 = document.getElementById('box4');
+			var text = document.getElementById('text');
+			var onOff = true;
+			//点击smile1和smile2切换图片
+//			smile1.onclick = function(){
+//				if(onOff){
+//					smile1.src = 'img/2.gif';
+//					onOff = false;
+//					}else{
+//					smile1.src = 'img/3.gif';
+//					onOff = true;
+//				}
+//			}	
+//			
+//			btn.onclick = function(){
+//				if(onOff){
+//					box4.innerHTML = '<p class="p1"><img src="img/3.gif"><span class="span1">'+text.value+'</span></p>'+box4.innerHTML;
+//					text.value = '';
+//				}else{
+//					box4.innerHTML = '<p class="p2"><img src="img/2.gif"><span class="span2">'+text.value+'</span></p>'+box4.innerHTML;
+//					text.value = '';
+//				}
+//			}
+			//点击smile1和smile2切换图片
+			smile1.onclick = function(){
+				if(onOff){
+					smile1.src = 'img/2.gif';
+					 onOff = false;
+				}else{
+					smile1.src = 'img/3.gif';
+					onOff = true;
+				};	
+			};
+			//点击发送
+			btn.onclick = function(){
+				if(onOff){
+					box4.innerHTML += '<p class="p1"><img src="img/3.gif"><span class="span1">'+text.value+'<span></p>';
+					text.value = '';
+				}else{
+					box4.innerHTML += '<p class="p2"><img src="img/2.gif"><span class="span2">'+text.value+'<span></p>';
+					text.value = '';
+					onOff = true;
+				};	
+			};
+		</script>
+	</body>
+</html>
