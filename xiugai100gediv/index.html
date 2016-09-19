@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		input{
+			margin: 50px 0 0 50px;
+		}
+		li{
+			width: 50px;
+			height:50px;
+			font-size: 30px;
+			line-height: 48px;
+			text-align: center;
+			font-weight: bold;
+			border:1px solid #000;
+			position: absolute;
+			left: 100px;
+			top:100px;
+			list-style: none;
+			}
+			#box{
+				display: none;
+			}
+	    </style>
+	</head>
+	<body>
+		<input id="btn" type="button" value="点击生成100个div！"/>
+		<ul id="box">
+			
+		</ul>
+		<script>
+			var box = document.getElementById('box');
+			var lis = box.getElementsByTagName('li');
+			var inps = document.getElementsByTagName('input')[0];
+			var bg = ['red','palegreen','palevioletred','yellow','pink'];
+			var str = '';
+			var num=0;
+			var Onoff = true;
+			
+			
+			inps.onclick = function(){
+				if(Onoff){
+					box.style.display = 'block';
+					for(var i=0;i<100;i++){
+					   str +='<li style="top:'+(Math.floor(i/10)*60+100)+'px;left:'+(i%10*60+100)+'px;">'+i+'</li>';	
+					};
+					box.innerHTML = str;
+					for(var i=0;i<lis.length;i++){
+						lis[i].style.background = bg[i%bg.length];
+					}
+					Onoff = false;
+				}else{
+					box.style.display = 'none';
+					Onoff = true;
+				}
+			}
+			
+
+		</script>
+	</body>
+</html>
