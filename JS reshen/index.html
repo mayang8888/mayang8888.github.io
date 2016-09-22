@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/index.css"  />
+	</head>
+	<body>
+		<div id="box">
+			<p> 
+			 	请为下面的DIV设置样式：
+			 	<a href="#" id="set1">
+			 		点击设置	
+			 	</a>
+			 </p>
+			<div id="box1"></div>
+		</div>
+		<div id="rgba">
+			<div id="box2">
+				<p id="set">
+					请选择背景色：
+					<a href="#" id="red">红</a>
+					<a href="#" id="yellow">黄</a>
+					<a href="#" id="blue">蓝</a>
+				</p>
+				<p id="set">
+					请选择宽度(px)：
+					<a href="#" id="width1">200</a>
+					<a href="#" id="width2">300</a>
+					<a href="#" id="width3">400</a>
+				</p>
+				<p id="set">
+					请选择高度(px)：
+					<a href="#" id="height1">200</a>
+					<a href="#" id="height2">300</a>
+					<a href="#" id="height3">400</a>
+				</p>
+				<p class="p1">
+					<a href="#" id="sure1">恢复</a>
+					<a href="#" id="sure2">确定</a>
+				</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//点击“点击设置”后的“背景层”弹出 
+			var red = document.getElementById('red');
+			var yellow = document.getElementById('yellow');
+			var blue = document.getElementById('blue');
+			var width1 = document.getElementById('width1');
+			var width2 = document.getElementById('width2');
+			var width3 = document.getElementById('width3');
+			var height1 = document.getElementById('height1');
+			var height2 = document.getElementById('height2');
+			var height3 = document.getElementById('height3');
+			var sure1 = document.getElementById('sure1');
+			var sure2 = document.getElementById('sure2');
+			var set1 = document.getElementById('set1');
+			var rgba = document.getElementById('rgba');
+			set1.onclick = function(){
+				rgba.style.display = 'block';
+			};
+			//点击“背景颜色”后，box1的背景颜色发生变化
+			red.onclick = function(){
+				box1.style.background = 'red';
+			};
+			yellow.onclick = function(){
+				box1.style.background = 'yellow';
+			};
+			blue.onclick = function(){
+				box1.style.background = 'blue';
+			};
+			//点击“宽度”后，box1的宽度发生变化
+			width1.onclick = function(){
+				box1.style.width = '200px';
+			};
+			width2.onclick = function(){
+				box1.style.width = '300px';
+			};
+			width3.onclick = function(){
+				box1.style.width = '400px';
+			};
+			//点击“高度”后，box1的高度发生变化
+			height1.onclick = function(){
+				box1.style.height = '200px';
+			};
+			height2.onclick = function(){
+				box1.style.height = '300px';
+			};
+			height3.onclick = function(){
+				box1.style.height = '400px';
+			};
+			//点击“恢复”
+			sure1.onclick = function(){
+				box1.style = '';
+			};
+			sure2.onclick = function(){
+				rgba.style.display = 'none';
+			};
+		</script>
+	</body>
+</html>
