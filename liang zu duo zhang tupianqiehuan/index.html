@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		#box{
+			width: 875px;
+			height: 553px;
+			background: url(img/bg.png) no-repeat;
+			margin: 0 auto;
+			position: relative;
+		}
+		img{
+			position: absolute;
+			top: 114px;
+			height: 245px;
+			cursor: pointer;
+		}
+		#box img:nth-of-type(1){
+			width:448px;
+			left: 49px;
+		}
+		#box img:nth-of-type(2){
+			width: 248px;
+			left:559px;
+		}
+		i{
+			position: absolute;
+			bottom: 143px;
+			font-weight: bold;
+		}
+		#box i:nth-of-type(1){
+			left: 49px;
+		}
+		#box i:nth-of-type(2){
+			right: 297px;
+		}
+		a{
+			position: absolute;
+			top:54px;
+			width: 60px;
+			height: 20px;
+		}
+		#box a:nth-of-type(1){
+			left:23px;
+		}
+		#box a:nth-of-type(2){
+			left: 100px;
+		}
+		p{
+			height: 20px;
+			width: 200px;
+			position: absolute;
+			bottom: 150px;
+			text-align: center;
+		}
+		#box p:nth-of-type(1){
+			left: 136px;
+		}	
+		#box p:nth-of-type(2){
+			width: 130px;
+			left: 634px;
+		}
+</style>
+</head>
+<body>
+	<div id="box">
+		<a href="javascript:;" class="left"></a>
+		<a href="javascript:;" class="right"></a>
+		<img src="" alt="" class="left"/>
+		<img src="" alt="" class="right"/>
+		<i class="left"></i>
+		<i class="right"></i>
+		<p class="left"></p>
+		<p class="right"></p>
+	</div>
+</body>
+</html>
+<script type="text/javascript">
+	var as = document.getElementsByTagName('a');//上一组   下一组
+	var imgs = document.getElementsByTagName('img');//左边图片   右边图片
+	var is = document.getElementsByTagName('i');//左边数字   右边数字
+	var ps = document.getElementsByTagName('p');//左边文字描述   右边数字文字描述
+	var leftimg = ['img/0.jpg','img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];//左边图片的数组
+	var lefttext = ['第一张图片','第二张图片','第三张图片','第四张图片','第五张图片'];//左边文字描述
+	var righttext = ['第一张图片','第二张图片','第三张图片'];//右边文字描述	
+	var rightimg = ['img/2.jpg','img/1.jpg','img/0.jpg'];//左边图片的数组
+	var leftnum = 0;
+	var rightnum = 0;
+	//左边初始化
+	imgs[0].src = leftimg[leftnum];
+	ps[0].innerHTML = lefttext[leftnum];
+	is[0].innerHTML = (leftnum+1)+'/'+leftimg.length;
+	//右边初始化
+	imgs[1].src = rightimg[rightnum];
+	ps[1].innerHTML = righttext[rightnum];
+	is[1].innerHTML = (rightnum+1)+'/'+rightimg.length;
+	//点击左边图片切换
+	function left(){
+		imgs[0].src = leftimg[leftnum];
+		ps[0].innerHTML = lefttext[leftnum];
+		is[0].innerHTML = (leftnum+1)+'/'+leftimg.length;
+	};
+	imgs[0].onclick = function(){
+		leftnum++;
+		if(leftnum>leftimg.length-1){
+			leftnum = 0;
+		};
+		left();		
+	};
+	//点击右边图片切换
+	function right(){
+		imgs[1].src = rightimg[rightnum];
+		ps[1].innerHTML = righttext[rightnum];			
+		is[1].innerHTML = (rightnum+1)+'/'+rightimg.length;
+	};
+	imgs[1].onclick = function(){
+		rightnum++;
+		if(rightnum>rightimg.length-1){
+			rightnum = 0;
+		};
+		right();
+	};
+	//点击上一组
+	as[0].onclick = function(){
+		leftnum++;
+		rightnum++;
+		if(rightnum>rightimg.length-1){
+			rightnum = 0;
+		};
+		if(leftnum>leftimg.length-1){
+			leftnum = 0;
+		};
+		left();
+		right();
+	};
+	//点击下一组
+	as[1].onclick = function(){
+		leftnum--;
+		rightnum--;
+		if(rightnum<0){
+			rightnum = rightimg.length-1;
+		};
+		if(leftnum<0){
+			leftnum = leftimg.length-1;
+		};
+		left();
+		right();
+	};
+</script>
+</html>
