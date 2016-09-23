@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box1{
+				width: 500px;
+				height: 500px;
+				margin: 60px auto;
+				position: relative;
+			}
+			#box1 img{
+				width: 100%;
+				height: 100%;
+			}
+			a{
+				position: absolute;
+				width: 50px;
+				height: 100px;
+				line-height: 100px;
+				font-size: 40px;
+				text-align: center;
+				font-weight: bold;
+				background:rgba(230,230,230,.5);
+				top: 50%;
+				margin-top: -50px;
+				text-decoration: none;
+				color: #fff;
+				border-radius: 50%;
+				
+			}
+			#left{
+				left: 10px;
+			}
+			#right{
+				right: 10px;
+			}
+			a:hover{
+				background:rgba(220,220,220,.9);
+			}
+			ul{
+				position: absolute;
+				bottom: 10px;
+				height: 30px;
+				width: 100%;
+				text-align: center;
+			}
+			li{
+				list-style: none;
+				width: 20px;
+				height: 20px; 
+				background: yellow;
+				border-radius: 50%;
+				margin-left: 10px;
+				display: inline-block;	
+				position: relative;
+			}
+			/*li:hover{
+				background: #ccc;
+			}*/
+			.hui{
+				background: #ccc;
+			}
+			#box1 li img{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				bottom: 33px;
+				left: -40px;
+				display: none;
+			}
+			#box1 ul div{
+				width: 0;
+				height: 0;
+				border: 10px solid transparent;
+				border-top-color: #3185B9;
+				position: absolute;
+				bottom: 12px;
+				left: 50%;
+				margin-left: -10px;
+				display: none;
+			}
+			#box li{
+				background: red;
+			}
+			#box1 .show{
+				display: block;
+			}
+			.yellow{
+				background: yellow;
+			}
+			.active{
+				background: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1">
+			<a href="javascript:;" id="left"><</a>
+			<a href="javascript:;" id="right">></a>
+			<img src="img/0.jpg" alt="" id="img1"/>
+			<ul>
+			</ul>
+		</div>
+		<script>
+			var left = document.getElementById('left');
+			var right = document.getElementById('right');
+			var box1 = document.getElementById('box1');
+			var box2= document.getElementById('box2');
+			var img1 = document.getElementById('img1');
+			var uls = document.getElementsByTagName('ul');
+			var lis = document.getElementsByTagName('li');
+			var divs = uls[0].getElementsByTagName('div');
+			var img = uls[0].getElementsByTagName('img');
+			var num = 0;
+			var str = '';
+		    function fn(){
+		    	for(var i=0;i<lis.length;i++){
+					lis[i].className = '';
+				};
+				img1.src = imgs[num];
+				lis[num].className = 'active';
+		    };
+		    function c(){
+		    	for(var i=0;i<lis.length;i++){
+					img[i].className = '';
+					divs[i].className = '';
+				}
+		    };
+			var imgs=['img/0.jpg','img/1.jpg','img/2.jpg','img/3.jpg','img/4.jpg'];
+			
+			//生成下面的"li"
+			for(var i=0;i<imgs.length;i++){
+				str += '<li><img src="'+ imgs[i] +'" alt=""/><div></div></li>';
+			};
+			uls[0].innerHTML = str;
+			lis[0].className = 'active';
+			//点击“left”图片切换
+			left.onclick = function(){
+				num--;
+				if(num < 0){
+					num =imgs.length-1;
+				}
+				if(num >= imgs.length){
+					num = 0;
+				}
+				fn();
+			};
+			//点击“right”图片切换
+			right.onclick = function(){
+				num++;
+				if(num >= imgs.length){
+					num = 0;
+				}
+				fn();
+			};
+			//点击小图标，小图标颜色、图片改变
+			for(var i=0;i<lis.length;i++){
+				lis[i].index = i;
+				lis[i].onclick = function(){
+					for(var i=0;i<lis.length;i++){
+						lis[i].style.background = '';
+					};
+					img1.src = imgs[this.index];
+					this.style.background = 'red';
+				};
+			};
+			//鼠标移入小图标,显示缩略图
+			for(var i=0;i<lis.length;i++){
+				lis[i].leo = i;
+				lis[i].onmouseover = function(){
+					for(var i=0;i<lis.length;i++){
+						img[i].style.display = '';
+						divs[i].style.display = '';
+					};
+					img[this.leo].style.display= 'block';
+					divs[this.leo].style.display= 'block';
+				};
+			};
+			for(var i=0;i<lis.length;i++){
+				lis[i].leo = i;
+				lis[i].onmouseover = function(){
+					c();
+					img[this.leo].className= 'show';
+					divs[this.leo].className = 'show';
+					this.className = 'hui';
+				};
+			};
+			//鼠标移出小图标,缩略图隐藏
+			for(var i=0;i<lis.length;i++){
+				lis[i].leo = i;
+				lis[i].onmouseout = function(){
+					c();
+					this.className = '';
+				};
+			};
+		</script>
+	</body>
+</html>
