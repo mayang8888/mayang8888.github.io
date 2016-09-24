@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			span{
+				text-decoration: none;
+				font-size: 40px;
+				cursor: pointer;
+			}
+			.pink{
+				color: deeppink;
+			}
+			.green{
+				color: lightseagreen;
+			}
+		</style>
+	</head>
+	<body>
+		<span>★</span>
+		<span>★</span>
+		<span>★</span>
+		<span>★</span>
+		<span>★</span>
+		<script>
+			var spans = document.getElementsByTagName('span');
+			var prev;
+			for(var i=0;i<spans.length;i++){
+				//自定义属性不要忘了是每一个
+				spans[i].index = i;
+				//鼠标移入
+				spans[i].onmouseover = function(){
+					if(this.index < 2){
+						for(var i=0;i<=this.index;i++){
+							//spans[this.index].style.color = '';
+							spans[i].className = 'pink';
+						};	
+					}else{
+						for(var i=0;i<=this.index;i++){
+							//spans[this.index].style.color = '';
+							spans[i].className = 'green';
+							
+						};
+					};
+				};
+				
+				
+				//鼠标移出清空取消
+				spans[i].onmouseout = function(){
+					for(var i=0;i<spans.length;i++){
+						spans[i].className = '';
+						
+					};
+				};
+//				spans[i].onmouseover = function(){
+//					for(var i=0;i<spans.length;i++){
+//						spans[i].style.color = '';	
+//						
+//					};
+//				};
+				//点击用行间样式,行间样式优先级最高
+				spans[i].onclick = function(){
+					//prev = this.index;
+					for(var i=0;i<spans.length;i++){
+						spans[i].style.color = '';	
+					};
+					if(this.index < 2){
+						for(var i=0;i<=this.index;i++){
+							spans[i].style.color = 'deeppink';
+						};	
+					}else{
+						for(var i=0;i<=this.index;i++){
+							spans[i].style.color = 'red';
+						};	
+					};
+				};
+			};
+		</script>
+	</body>
+</html>
