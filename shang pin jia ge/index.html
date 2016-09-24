@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			ul{
+				width:500px;
+				height: 300px;
+				margin: 50px auto 0 auto;
+			}
+			li{
+				line-height: 50px;
+				list-style: none;
+			}
+			strong{
+				font-size: 20px;
+				font-weight: bold;			
+			}
+			input{
+				width: 40px;
+				height: 40px;
+				background: greenyellow;
+				font-size: 20px;
+				font-weight: bold;			
+				}
+			/*input:hover{
+				background: #6CE26C;
+			}*/
+			div{
+				width:500px;
+				height: 60px;
+				margin: 0 auto;
+			}
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>12元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>10.5元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>8.5元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>8元</em>
+				小计：<span>0元</span>
+			</li>
+			<li>
+				<input type="button" value="-" />
+				<strong>0</strong>
+				<input type="button" value="+" />
+				单价：<em>14.5元</em>
+				小计：<span>0元</span>
+			</li>
+		</ul>
+		<div>
+			商品合计：<i>0</i>件,共花费了<i>0</i>元,
+			其中最贵的商品单价是:<i>0</i>元
+		</div>
+			<script>
+				//传参使用方法
+				//	1.尽量保证html代码结构一致,通过父级元素选取子级元素!
+				//	2.把核心程序实现,用函数包起来
+				//	3.把每组里面不同的值找出来,通过传参实现
+				var uls = document.getElementsByTagName('ul')[0];
+				var lis = uls.getElementsByTagName('li');
+				var span = uls.getElementsByTagName('span');
+				var strong = uls.getElementsByTagName('strong')[0];
+				var em = uls.getElementsByTagName('em')[0];
+				for(var i=0;i<lis.length;i++){
+					fn(lis[i]);
+				};
+				function fn(li){
+					var div = document.getElementsByTagName('div');
+					var inputs = li.getElementsByTagName('input');
+					var strongs = li.getElementsByTagName('strong')[0];
+					var spans = li.getElementsByTagName('span')[0];
+					var ems = li.getElementsByTagName('em')[0];
+					var is = div[0].getElementsByTagName('i');
+					var num1 = Number(strongs.innerHTML);//"0"  => 0
+					var num2 = parseFloat(ems.innerHTML);//12.5元     => 12.5
+					
+
+					//点击“-”，数量减少
+					inputs[0].onclick  = function(){
+						num1 --;
+						if(num1<0){
+							num1 = 0;
+							return;
+						};
+						//单价
+						strongs.innerHTML = num1;
+						//小计
+						spans.innerHTML = num1*num2+'元';
+						//合计件数
+						is[0].innerHTML = Number(is[0].innerHTML )-1;
+						//合计元
+						if(num1<0){
+							is[1].innerHTML = 0;
+						}else{
+							is[1].innerHTML = parseFloat(spans.innerHTML)-is[1].innerHTML;};
+
+						//最贵单价
+						b();
+					};
+					//点击“+”，数量减少
+					inputs[1].onclick  = function(){
+						num1 ++;
+						//单价
+						strongs.innerHTML = num1;
+						//小计
+						spans.innerHTML = num1*num2+'元';
+						//合计件数
+						is[0].innerHTML = Number(is[0].innerHTML)+1;
+						//合计元
+						is[1].innerHTML = Number(is[1].innerHTML) + parseFloat(ems.innerHTML);
+						//最贵单价
+						b();
+					};
+				};
+				//商品最高单价
+				function b(){
+					var strong = uls.getElementsByTagName('strong');
+					var em = uls.getElementsByTagName('em');
+					var div = document.getElementsByTagName('div');
+					var is = div[0].getElementsByTagName('i');
+					var a=0;
+					for(var i=0;i<lis.length;i++){
+						if(strong[i].innerHTML !=0 && parseFloat(em[i].innerHTML)>a){
+							a =parseFloat(em[i].innerHTML);
+						}
+						is[2].innerHTML = a;
+					}
+				}
+			</script>
+
+	</body>
+</html>
