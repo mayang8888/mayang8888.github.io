@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			div{
+				width: 350px;
+				height: 260px;
+				margin: 20px auto;
+			}
+			li{
+				list-style: none;
+				width: 300px;
+				height: 40px;
+				line-height: 40px;
+				border-bottom: 1px solid #000;
+			}
+			input{
+				width: 15px;
+				height: 15px;
+				margin-left: 15px;
+			}
+			p{
+				line-height: 50px;
+			}
+			.yellow{
+				background: yellow;
+			}
+			.red{
+				background: red;
+			}
+			.black{
+				background: black;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<li><input type="checkbox"></li>
+				<li><input type="checkbox"></li>
+				<li><input type="checkbox"></li>
+				<li><input type="checkbox"></li>
+				<li><input type="checkbox"></li>
+			</ul>
+			<p><input type="checkbox" id="all">全选</p>
+		</div>
+		
+		<script>
+			var all = document.getElementById('all');
+			var uls = document.getElementsByTagName('ul')[0]; 
+			var lis = uls.getElementsByTagName('li'); 
+			var inps = uls.getElementsByTagName('input');
+			var prev;
+			//取模求余
+//			num1%num2  num1小于num2 = num1
+//			num1%num2  num1大于num2 = 余数
+//			num1%num2  num1等于num2 = 0
+			for(var i =0;i<lis.length;i++){
+				
+				//隔行变色
+//				if(i%2){
+//					lis[i].className = 'red';
+//				}else{
+//					lis[i].className = 'yellow';
+//				};
+				switch(i%2){
+					case 0:lis[i].className = 'red';break;
+					case 1:lis[i].className = 'yellow';break;
+				};
+				//鼠标移入改变背景色
+				lis[i].onmouseover = function (){	
+					//把className存入present中
+					present=this.className;
+					this.className = 'black';
+				};
+				//鼠标移出去掉背景黑色
+				lis[i].onmouseout = function (){
+					//鼠标移出还是当前的className
+					this.className = present;
+				};
+				//点击当前“checkbox”,当前的li背景色改变	
+				inps[i].index = i;
+				inps[i].onchange = function (){ 
+					//console.log(this.checked);
+					
+					//点击“input”,li变为绿色
+					if(this.checked){
+						//注意css的优先级
+						lis[this.index].style.background = 'green';
+					}else{
+						lis[this.index].style.background = '';
+					}
+					all.checked = checkall(); 
+				};
+				
+			};
+			
+			function checkall(){
+				for(var i =0;i<lis.length;i++){
+					if(!inps[i].checked){
+						return false;
+					}
+				}
+				return true;
+			};
+			//点击“全选”关联上面
+			all.onchange=function(){
+				for(var i=0;i<inps.length;i++){
+					inps[i].checked = this.checked;
+					if(this.checked){
+						lis[i].style.background ='green';
+					}else{
+						lis[i].style.background = '';
+					} 
+				}
+		}
+		</script>
+	</body>
+</html>
