@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul{
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+				cursor: pointer;
+			}
+			#box{
+				width: 700px;
+				height: 400px;
+				border: 5px solid #ccc;
+				margin: 20px auto;
+			}
+			#box > ul{
+				height: 100%;
+				float: left;
+			}
+			#box > ul li{
+				width: 100px;
+				height: 98px;
+				font: 15px/98px "微软雅黑";
+				text-align: center;
+				background-color: #000;
+				border-bottom: 2px solid #fff;
+				color: #fff;
+			}
+			#box ul .show{
+				background-color: #FF0000;
+				color: #000;
+			}
+			#box ul .show:hover{
+				background: #00BFFF;
+			}
+			#box div{
+				width: 600px;
+				height: 100%;
+				position: relative;
+				float: left;
+				display: none;
+			} 
+			#box div ul{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+			}
+			#box div li{
+				background: deeppink;
+				opacity: .7;
+				border-right: 2px solid red;
+				border-bottom: 2px solid #7CFC00;
+				margin-right: -2px;
+				font: 15px/30px "arial black";
+				text-align: center;
+				color: #fff;
+				float: left;
+			}
+			#box div li:nth-of-type(4){
+				border-right: 0;
+			}
+			#box img{
+				width: 100%;
+				height: 100%;
+			}
+			/*#box div .active{
+				display: none;
+			}*/
+
+			#box .active{
+				background-color: red;
+			}
+			#box .show{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+		</div>
+		<script type="text/javascript">
+			//获取数组里包含着的四个区域、对应这介绍、图片位置
+			var arr = [
+						['平谷区',['俯瞰观景台','世界之最','美如画','救我、好怕怕！'],['img/p1.jpg','img/p2.jpg','img/p3.jpg','img/p4.jpg']],
+						
+						['叫兽的后宫',['sexy','lovely','fashion','simplicity ','lovely'],['img/m1.jpg','img/m2.jpg','img/m3.jpg','img/m4.jpg','img/m5.jpg']],
+						
+						['欧式建筑',['双子塔','欧式建筑','斯旺西外景','居民房'],['img/w1.jpg','img/w2.jpg','img/w3.jpg','img/w4.jpg']],
+						
+						['江浩的兄弟',['大兄弟哈士奇','二兄弟牧羊犬','两个小兄弟'],['img/g1.jpg','img/g2.jpg','img/g3.jpg']]
+				
+					];
+			var box = document.getElementById('box');
+			var str = '<ul>';
+			var str1 = '';
+			//生成左侧的li
+			//for套for里面变量i的值必须不同，如果两个for之间有函数，就可以用同一个变量（i）.
+			for(var i=0;i<arr.length;i++){ 
+				str += '<li>'+arr[i][0]+'</li>';
+				str1 +='<div><img src="'+arr[i][2][0]+'"><ul>';
+				for(var j=0;j<arr[i][1].length;j++){
+					str1 += '<li style="width:'+600/arr[i][1].length+'px;">'+arr[i][1][j]+'</li>';
+				};
+				str1 +='</ul></div>';
+			};
+			str += '</ul>' + str1;
+			box.innerHTML = str;
+
+			//获取元素
+			var box = document.getElementById('box');
+			var lis = box.getElementsByTagName('li');
+			var div = box.getElementsByTagName('div');
+			//初始化
+			lis[0].className = 'active';
+			div[0].className = 'show';
+			//点击左边的li,切换焦点和div
+			for(var i=0;i<arr.length;i++){
+				lis[i].index = i;
+				lis[i].onclick = function(){
+					for(var i=0;i<arr.length;i++){
+						lis[i].className = '';
+						div[i].className = '';
+					}
+					this.className = 'active';
+					div[this.index].className = 'show';
+				}	
+			};
+			for(var i=0;i<div.length;i++){
+				fn(i);
+			}
+			function fn(a){
+				var lis = div[a].getElementsByTagName('li');
+				var img = div[a].getElementsByTagName('img')[0];
+				lis[0].className = 'active';
+				for(var i=0;i<lis.length;i++){
+					lis[i].index = i;
+					lis[i].onclick = function(){
+						for(var i=0;i<lis.length;i++){
+							lis[i].className = '';
+						}
+						this.className = 'active';
+						img.src = arr[a][2][this.index];
+					};
+				}
+			}
+		</script>
+	</body>
+</html>
