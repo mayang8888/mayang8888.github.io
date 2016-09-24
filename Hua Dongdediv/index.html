@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 50px;
+				height: 50px;
+				line-height: 50px;
+				color: #fff;
+				font-size: 24px;
+				font-weight: bold;
+				text-align: center;
+				background: plum;
+				position: absolute;
+				top: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript" src='mTween.js'></script>
+		<script type="text/javascript" src="tween.js"></script>
+		<script>	
+			//生成20个div
+			var str = '';
+			var onoff = true;
+			var div = document.getElementsByTagName('div');
+			for(var i=0;i<10;i++){
+				var Left = i*60;
+				str +='<div style="left:'+Left+'px;">'+i+'</div>';
+			}
+			document.body.innerHTML = str;
+			document.onclick = function(){
+				if(onoff){
+					for(var i=0;i<20;i++){
+						xbottom(i,i*60);	//i*150是每一个div延迟i*150ms后在开始运动
+					}
+					onoff = false;
+				}else{
+					for(var i=0;i<20;i++){
+						xtop(i,i*60);	
+					}
+					onoff = true;
+				};
+			};
+			//往下运动
+			function xbottom(a,top){
+				setTimeout(function(){
+					mTween(div[a],'top',400,600,'linear');
+				},top)
+					//第1值是每个div
+					//第2个值需要改变的值是absolute的top值
+					//第3个值是终点600px，
+					//第4个值是运动时间600ms
+					//第五个是运动方式
+			};
+
+			//往上运动
+			function xtop(a,top){
+				setTimeout(function(){
+					mTween(div[a],'top',0,600,'linear');
+				},top)
+					//第1值是每个div
+					//第3个值是回到开始位置0px，第4个值是运动时间600ms
+			};
+		</script>
+	</body>
+</html>
