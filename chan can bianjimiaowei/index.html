@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<style type="text/css">
+			section{
+				width: 600px;
+				margin: 50px auto;
+			}
+			header{
+				padding-left: 40px;
+				height: 50px;
+				background: yellowgreen;
+				color: #fff;
+				font-size: 24px;
+				font-weight: bold;
+			}
+			#list{
+				width: 100%;
+				border-top: 1px solid #000;
+			} 
+			li{
+				padding-left: 40px;
+				height: 40px;
+				font: 20px/40px arial;
+				border-top:1px solid #00BFFF ;
+				border-bottom:1px solid #00BFFF ;
+				margin-bottom: 1px;
+			}
+			p{
+				display: block;
+				position: relative;
+			}
+			img{
+				width: 16px;
+				height: 16px;
+				margin-left: 10px;
+				margin-top: 12px;
+				cursor: pointer;
+			}
+			div{
+				display: none;
+			}
+			#text{
+				border: 1px solid #ccc;
+				height: 30px;
+				font: 20px/30px "微软雅黑";
+			}
+			.btn{
+				font: 20px/20px "微软雅黑";
+				cursor: pointer;
+				padding: 2px;
+				margin-left: 5px;
+				background: #ccc;
+			}
+			.btn:hover{
+				background: green;
+				color: #fff;
+			}
+			/*.show{
+				display: block;
+			}
+			.dis{
+				display: none;
+			}*/
+			.trigger p{
+				display: none;
+			}
+			.trigger div{
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<section>
+			<header>分类名称</header>
+			<ul id="list">
+				<!-- <li>
+					<p>
+						<span>妙味远程课堂</span>
+						<img src="img/12.jpg" alt="" />
+					</p>
+					<div>
+						<input type="text" id="text"/>
+						<a href="javascript:;" class="btn">保存</a>
+						<a href="javascript:;" class="btn">取消</a>
+					</div>
+				</li>
+				<li>
+					<p>
+						<span>妙味远程课堂</span>
+						<img src="img/12.jpg" alt="" />
+					</p>
+					<div>
+						<input type="text" id="text"/>
+						<a href="javascript:;" class="btn">保存</a>
+						<a href="javascript:;" class="btn">取消</a>
+					</div>
+				</li> -->
+			</ul>
+		</section>
+		<script type="text/javascript">
+		/*
+			1.先写好html结构，加上css样式
+			2.重复的内容先完成一个，剩下的用传参解决
+				1、点击img的时候隐藏p标签，显示div
+				2、点击保存的时候把文本框的值给p标签中的span，隐藏div，显示p标签。
+				3. 点击取消隐藏div，显示p标签。
+			3.利用传参实现重复的部分。
+		*/
+		var list = document.getElementById('list');
+		var lis = list.getElementsByTagName('li');
+		var str = '';
+
+		for(var i=0;i<10;i++){
+			str+='<li><p><span>妙味远程课堂</span><img src="img/12.jpg" alt="" /></p><div><input type="text" id="text"/><a href="javascript:;" class="btn">保存</a><a href="javascript:;" class="btn">取消</a></div></li>';
+		}
+		list.innerHTML = str;
+		for(var i=0;i<lis.length;i++){
+			fn(lis[i]);
+		}
+		// fn(lis[0]);
+		// fn(lis[1]);
+		function fn(obj){
+
+			var img = obj.getElementsByTagName('img')[0];
+			var as = obj.getElementsByTagName('a');
+			var text = obj.getElementsByTagName('input')[0];
+			var span = obj.getElementsByTagName('span')[0];
+			//img点击的时候切换到div显示,p标签隐藏。
+			img.onclick = function(){
+				//把span的内容给输入框，这样体验好一些。
+				text.value = span.innerHTML;	
+				obj.className = 'trigger';
+			};
+			//点击保存和取消的时候让p显示,div标签隐藏。
+			//保存按钮
+			as[0].onclick = function(){
+				//如果有内容就进行修改。
+				if(text.value != ''){
+					span.innerHTML = text.value;
+				}
+				obj.className = '';
+			};
+			//取消按钮
+			as[1].onclick = function(){
+				obj.className = '';
+			};
+		}
+		</script>
+	</body>
+</html>
