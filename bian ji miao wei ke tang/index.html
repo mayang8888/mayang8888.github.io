@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			dl{
+				width: 569px;
+				height: 109px;
+				margin: 100px auto;
+			}
+			dd{
+				list-style: none;
+				text-indent: 24px;
+				width: 100%;
+				height: 39px;
+				line-height: 39px;
+				font-size: 12px;
+				font-weight: bold;
+			}
+			#nav{
+				width: 539px;
+				height: 28px;
+				background: #6ba542;
+				border-top: 1px solid #000;
+				color: #FFF9FF;
+				font-weight: bold;
+				font-size: 14px;
+				line-height:28px;
+				padding-left: 30px;
+			}
+			div{
+				display: inline-block;
+			}
+			p{
+				display: inline-block;
+			}
+			dd span {
+				width: 16px;
+				height: 17px;
+			
+			}
+			strong{
+				cursor: pointer;
+			}
+			.content1{
+				border-top: 1px solid #bddede;
+				border-bottom: 1px solid #bddede;
+				}
+			.show{
+				display: inline-block;
+			}
+			.hidden{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<dl>
+			<dt id="nav">分类名称</dt>
+			<dd class="content1" >
+				<div>
+					<p>秒味远程课程</p>
+					<span>
+						<img src="img/bi.gif" alt="" title="修改" />
+					</span>
+				</div>		
+				<div class="hidden">
+					<input type="text" value="秒味远程课程"/>
+					<strong >确认</strong>
+					<strong >取消</strong>
+				</div>
+			</dd>
+			<dd class="content1" >
+				<div>
+					<p>秒味远程课程</p>
+					<span>
+						<img src="img/bi.gif" alt="" title="修改" />
+					</span>
+				</div>		
+				<div class="hidden">
+					<input type="text" value="秒味远程课程"/>
+					<strong >确认</strong>
+					<strong >取消</strong>
+				</div>
+			</dd>			
+		</dl>
+		<script>
+			var dds = document.getElementsByTagName('dd');
+			var divs = dds[0].getElementsByTagName('div');
+			for(var i=0;i<dds.length;i++){
+				//fn(dds[i]);
+				fn(i);
+			};
+			
+			function fn(a){
+				var dds = document.getElementsByTagName('dd');
+				var divs = dds[a].getElementsByTagName('div'); //console.log(divs)
+				var ps = divs[0].getElementsByTagName('p');
+				var imgs = divs[0].getElementsByTagName('img');
+				var strongs = divs[1].getElementsByTagName('strong');
+				var inputs = divs[1].getElementsByTagName('input');
+				var str = 0;
+				//点击笔,输入框出现
+				imgs[0].onclick = function(){
+					divs[1].className = 'show';
+					divs[0].className = 'hidden';
+				};
+				//输入内容，点击‘确认’
+				strongs[0].onclick = function(){
+					divs[1].className = 'hidden';
+					divs[0].className = 'show';
+					ps[0].innerHTML = inputs[0].value;
+				};
+				//点击‘取消’,恢复原状
+				strongs[1].onclick = function(){
+					divs[0].className = 'show';
+					divs[1].className = 'hidden';
+				};			
+			};
+			
+		</script>
+	</body>
+</html>
