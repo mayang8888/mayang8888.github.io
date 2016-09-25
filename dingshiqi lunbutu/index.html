@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 600px;
+				height: 450px;
+				margin: 50px auto;
+				border: 5px solid #333;
+				position: relative;
+			}
+			#box img{
+				width: 100%;
+				height: 100%;
+			}
+			#box a:hover{
+				opacity: .4;
+			}
+			#box a{
+				text-decoration: none;
+				width: 40px;
+				height: 60px;
+				line-height: 60px;
+				background-color: #3F3F3F;
+				border-radius: 50%;
+				opacity: .6;
+				color:black;
+				font-size: 40px;
+				font-weight: bold;
+				text-align: center;
+				position: absolute;
+				top: 50%;
+				margin-top: -20px;
+			}
+			#prev{
+				left:10px;
+			}
+			#next{
+				right:10px;
+			}
+			#list{
+				padding: 0;
+				margin: 0;
+				position: absolute;
+				bottom: 20px;
+				left:50%;
+				margin-left: -105px;
+			}
+			#list li{
+				list-style: none;
+				background-color: yellow;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				float: left;
+				margin: 0 5px;
+				cursor:pointer;
+				position: relative;
+			}
+			#list li.active{
+				background-color: #ccc;
+			}
+			/*#list .red{
+				background: red;
+			}*/
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<img src="img/1.jpg" alt="" id="img">
+			<a href="javascript:;" id="prev"><</a>
+			<a href="javascript:;" id="next">></a>
+			<ul id="list"></ul>
+		</div>
+		<script>
+			var prev = document.getElementById('prev');
+			var next = document.getElementById('next');
+			var img = document.getElementById('img');
+			var box = document.getElementById('box');
+			var list = document.getElementById('list');
+			var lis = list.getElementsByTagName('li');
+			var arr = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','8.jpg'];
+			var num = 0;
+			var timer = 0;
+			var str = '';
+			//初始化
+			//lis[0].className = 'red';
+			//点击向右循环切换
+			next.onclick = function(){ 
+				a();
+			};
+			function a(){
+				num++;
+				if(num > arr.length-1){
+					num = 0;
+				};
+				//给li清空上一个焦点
+				for(var i=0;i<lis.length;i++){
+					lis[i].style.background = '';
+				}
+				img.src = 'img/'+arr[num];
+				
+				c();
+			};
+			function c(){
+				//给li添加焦点颜色
+				lis[num].style.background = 'red';
+				//点击li切换相应的图片
+				for(var i=0;i<lis.length;i++){
+					lis[i].index =i; 
+					lis[i].onclick = function(){
+						for(var i=0;i<lis.length;i++){
+							lis[i].style.background = '';
+						};
+						this.style.background = 'red';
+						img.src = 'img/'+arr[this.index];
+						//记录当前位置
+						num = this.index;
+					};
+				};
+				//num = this.index;
+			}
+			//点击向左循环切换
+			prev.onclick = function(){ 
+				b();
+			};
+			function b(){
+				num--;
+				if(num < 0){
+					num = arr.length-1;
+				};
+				for(var i=0;i<lis.length;i++){
+					lis[i].style.background = '';
+				}
+				img.src = 'img/'+arr[num];
+				lis[num].style.background = 'red';
+			};
+			//循环定时器，自加
+			autoplay();
+			function autoplay(){
+				timer=setInterval(function(){
+					a();
+				},1000)
+			};
+			//鼠标移入，定时器清除
+			box.onmouseover = function(){
+				clearInterval(timer);
+			};
+			//鼠标移出，定时器开始
+			box.onmouseout = function(){
+				autoplay();
+			};
+			//生成li
+			for(var i=0;i<arr.length;i++){
+				str +='<li></li>';
+			};
+			list.innerHTML = str;
+			c();
+		</script>
+	</body>
+</html>
