@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			width: 50px;
+			height: 70px;
+			list-style: none;
+			float: left;
+			position: relative;
+			overflow: hidden;
+		}
+		div{
+			width: 50px;
+			height: 70px;
+			position: absolute;
+			top: 0;
+		}
+		img{
+			vertical-align: top;
+		}
+	</style>
+	<script type="text/javascript" src="mTween.js"></script>
+	<script type="text/javascript" src="tween.js"></script>
+</head>
+<body>
+	<ul>
+		<li>
+			<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+		</li>
+		<li>
+			<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+		</li>
+		<li>
+			<img src="img/c.jpg" alt="">
+		</li>
+		<li>
+			<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+		</li>
+		<li>
+			<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+		</li>
+		<li>
+			<img src="img/c.jpg" alt="">
+		</li>
+		<li>
+			<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+		</li>
+		<li>
+			<div><img src="img/0.jpg" alt=""><img src="img/0.jpg" alt=""></div>
+		</li>
+	</ul>
+	<script type="text/javascript"> 
+		var imgs = document.querySelectorAll('div img');
+		var imgs2 = document.querySelectorAll('li>img');
+		var divs = document.getElementsByTagName('div');
+		var mydate = new Date();
+		//获取小时
+		var h = mydate.getHours();
+		//获取分钟
+		var m = mydate.getMinutes();
+		//获取秒钟
+		var s = mydate.getSeconds();
+		//拼接时间
+		var time = toTwo(h)+toTwo(m)+toTwo(s);
+		//因为获取的img是12个，所以/2(0,1,2,3,4,5,6)
+		for(var i=0;i<imgs.length/2;i++){//console.log(imgs.length);
+			//imgs[i*2]的意思是取下标console.log(imgs[i*2])的结果是(0,2,4,6,8,10)
+			//就是每个div下面的第一个img
+			imgs[i*2].src = 'img/'+time[i]+'.jpg';
+			//console.log(imgs[i*2]);
+		}
+		
+		//初始化定时器
+		setInterval(function(){
+			for(var i=0;i<imgs2.length;i++){
+				imgs2[i].src = 'img/c.jpg';
+			}
+			setTimeout(function(){
+				for(var i=0;i<imgs2.length;i++){
+					imgs2[i].src = 'img/b.jpg';
+				}
+			}, 500)
+		}, 1000);
+		//小于10就补0
+		function toTwo(n){
+			return n<10? '0'+n:''+n;
+		}
+		function fn(a){
+			//获取时间
+			setInterval(function () {
+				var mydate = new Date();
+				//获取小时
+				var h = mydate.getHours();
+				//获取分钟
+				var m = mydate.getMinutes();
+				//获取秒钟
+				var s = mydate.getSeconds();
+				//拼接时间
+				var time = toTwo(h)+toTwo(m)+toTwo(s);
+				var imgs = divs[a].getElementsByTagName('img');
+				//初始化
+				imgs[1].src = 'img/'+time[a]+'.jpg';
+				if(imgs[1].src != imgs[0].src){
+					//通过mTween来改变每个divs的top值
+					mTween(divs[a],'top',-70,400,'linear',function(){
+					//alert(1)
+					//上面的图片看不见，先改上面的图片
+					imgs[0].src = 'img/'+time[a]+'.jpg';
+					//瞬间拉回top值
+					divs[a].style.top = '0px';
+					});
+				}	
+			},1000)
+		}
+//		fn(5);
+//		fn(4);
+		//在for循环中用;隔开每个变量
+		for(var i=0;i<divs.length;i++){
+			fn(i);
+		}
+	</script>
+</body>
+</html>
