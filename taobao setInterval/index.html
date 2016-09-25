@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box{
+				width:600px;
+				border:5px solid deeppink;
+				margin: 50px auto 0;
+				position: relative;
+			}
+			img{
+				width:450px;
+				margin: 10px 75px 20px;
+				height: 290px;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				top: 3px;
+			}
+			ul:nth-of-type(1){
+				left:5px;
+			}
+			ul:nth-of-type(2){
+				right:15px;
+			}
+			li{
+				list-style: none;
+				width:50px;
+				height: 30px;
+				margin: 5px 0;
+				border: 2px solid palevioletred;
+				line-height: 30px;
+				text-align: center;
+				cursor: pointer;
+				background: papayawhip;
+			}
+			.active{
+				color:white;
+				background-color:lightpink; 
+			}
+		</style>		
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li class="active">狗1</li>
+				<li>狗2</li>
+				<li>狗3</li>
+				<li>狗4</li>
+				<li>狗5</li>
+				<li>狗6</li>
+				<li>狗7</li>
+				<li>狗8</li>
+			</ul>
+			<ul>
+				<li>狗9</li>
+				<li>狗10</li>
+				<li>狗11</li>
+				<li>狗12</li>
+				<li>狗14</li>
+				<li>狗15</li>
+				<li>狗16</li>
+				<li>狗17</li>
+			</ul>
+			<img src="img/1.jpg" alt="">
+		</div>	
+		<script>
+			var box = document.getElementById('box');
+			var uls = document.getElementsByTagName('ul');
+			var lis = uls[0].getElementsByTagName('li');
+			var li  = box.getElementsByTagName('li');
+			var img = box.getElementsByTagName('img');
+			var timer = null;
+			var num = 0;
+			var arr = ['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','9.jpg','8.jpg']
+			var n = li.length/2; 
+			//console.log(n);
+			//鼠标移入左侧li(右侧用传参实现),切换图片和焦点
+				for(var i=0;i<li.length;i++){
+					for(var j=0;j<li.length;j++){
+						li[j].index = j;
+						li[j].onmouseover = function(){
+							//清除所有的li的样式，所以是li不是lis(lis是其中一侧)
+							for(var i=0;i<li.length;i++){
+								li[i].className = '';
+							};
+							this.className = 'active';
+							img[0].src = 'img/'+arr[this.index%arr.length];
+							//记录当前鼠标位置，鼠标移出后从当前位置开启定时器
+							num = this.index;
+						};
+					};		
+				};
+			//循环定时器
+			autoplay();
+			function autoplay(){
+				timer=setInterval(function(){
+					if(num<n){
+						num++;
+						if(num==n){
+							num =li.length-1;
+						}
+						for(var i=0;i<lis.length;i++){
+							li[i].className = '';
+						};
+						li[num].className = 'active';
+						img[0].src = 'img/'+ arr[num%arr.length];
+					}else{
+						num--;
+						if(num==n-1){
+							num=0;
+						}
+						for(var i=0;i<li.length;i++){
+							li[i].className = '';	
+						}
+						li[num].className = 'active';
+						img[0].src = 'img/'+ arr[num%arr.length];
+					}	
+				},400);
+			};
+			//鼠标移入box，清除循环定时器
+			box.onmouseover = function(){
+				clearInterval(timer);
+			};
+			//鼠标移出box，开启循环定时器
+			box.onmouseout = function(){
+				autoplay();
+			};
+			////////////////////////////////////////////////
+			//一句话结束或者前边有=的话，才加;  切记！！！！切记！！！
+			
+		</script>
+	</body>
+</html>
