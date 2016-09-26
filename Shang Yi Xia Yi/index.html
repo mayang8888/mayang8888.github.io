@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			li{
+				position: relative;
+				top: 0;
+			}
+		</style>
+		<script type="text/javascript" src="mTween.js"></script>
+		<script type="text/javascript" src="tween.js"></script>
+	</head>
+	<body>
+		<script>
+			var ul = document.createElement('ul');
+			var onoff = true;
+			for(var i=0;i<5;i++){
+				(function(){
+					//创建li
+					var li = document.createElement('li');
+					//创建'上移'button
+					var upper = document.createElement('button');
+					//创建'下移'button
+					var down = document.createElement('button');
+					//通过str.repeat(复制的次数)拼接，在li中添加innerHTML
+					li.innerHTML = (''+i).repeat(5);
+					upper.innerHTML = '上移';
+					down.innerHTML = '下移';
+					//把'上移'按钮添加到li里面
+					li.appendChild(upper);
+					//把'下移'按钮添加到li里面
+					li.appendChild(down);
+					//把'li'按钮添加到ul里面
+					ul.appendChild(li);
+					//点击“上移”
+					upper.onclick = function(){
+						if(!onoff){
+							return;
+						}
+						onoff = false;
+						if(li.previousElementSibling){
+							mTween(li,'top',-li.offsetHeight,300,'linear');
+							mTween(li.previousElementSibling,'top',li.offsetHeight,300,'linear',function(){
+								li.style.top= '0px'; 
+								li.previousElementSibling.style.top= '0px';
+								//在ul里面，把li插入到li的上一个兄弟级元素前面
+								ul.insertBefore(li,li.previousElementSibling);
+							})
+							
+						}else{
+							alert('已经到第一个了');
+						}
+						onoff = true;
+					}
+					//点击“下移”
+					down.onclick = function(){
+						if(!onoff){
+							return;
+						}
+						onoff = false;
+						if(li.nextElementSibling){
+							mTween(li,'top',li.offsetHeight,300,'linear');
+							mTween(li.nextElementSibling,'top',-li.offsetHeight,300,'linear',function(){
+								li.style.top= '0px'; 
+								li.nextElementSibling.style.top= '0px';
+								//在ul里面，把li插入到li的下一个兄弟级元素前面
+								ul.insertBefore(li.nextElementSibling,li);//li.nextElementSibling和li的前后位置
+							})
+							
+						}else{
+							alert('已经到最后一个了');
+						}
+						onoff = true;
+					}
+				})();
+			}
+			////把ul按钮添加到body里面
+			document.body.appendChild(ul);
+		</script>
+	</body>
+</html>
