@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			table{
+				width: 1200px;
+				text-align: center;
+				line-height: 28px;
+				margin: 10px auto;
+				border: 1px solid black;
+			}
+			thead{
+				font-weight: bold;
+				font-size: 18px;
+			}
+			td,th{
+				border: 1px solid black;	
+			}
+			.form{
+				line-height: 30px;
+				width: 1200px;
+				margin: 10px auto;
+			}
+			.active{
+				background: yellow;
+			}
+			.pink{
+				background: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id ='div1' class="form">	
+			<div>
+				姓名：<input type="text" name="">
+			</div>
+			<div>
+				年龄：<input type="text" name="">
+			</div>
+			<div>
+				性别：
+				<select name="" id="">
+					<option value="男">男</option>
+					<option value="女">女</option>
+				</select>
+			</div>
+			<div>
+				<button>添加</button>
+			</div>
+			<div>
+				<button>反选</button>
+			</div>
+			<div>
+				<button>批量删除</button>
+			</div>
+			<div>
+				排序：
+				<select name="" id="">
+					<option value="编号">编号</option>
+					<option value="年龄">年龄</option>
+				</select>
+				<select name="" id="">
+					<option value="男">升序</option>
+					<option value="女">降序</option>
+				</select>
+				<button>提交</button>
+			</div>
+			<div>
+				模糊搜索：
+				<input type="text" name="">
+				<button>提交</button>
+			</div>
+		</div>
+		<table id="tab">
+			<thead>
+				<td><input type="checkbox">全选</td>
+				<td>ID</td>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>性别</td>
+				<td>操作</td>
+			</thead>
+			<tbody id="tbody">
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>1</td>
+					<td>Leo</td>
+					<td>36</td>
+					<td>男</td>
+					<td><a href="javascript:;">上移</a>|<a href="javascript:;">下移</a>|<a href="javascript:;">删除</a>|</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>2</td>
+					<td>新建</td>
+					<td>22</td>
+					<td>男</td>
+					<td><a href="javascript:;">上移</a>|<a href="javascript:;">下移</a>|<a href="javascript:;">删除</a>|</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>3</td>
+					<td>方法</td>
+					<td>55</td>
+					<td>男</td>
+					<td><a href="javascript:;">上移</a>|<a href="javascript:;">下移</a>|<a href="javascript:;">删除</a>|</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>4</td>
+					<td>小小</td>
+					<td>25</td>
+					<td>女</td>
+					<td><a href="javascript:;">上移</a>|<a href="javascript:;">下移</a>|<a href="javascript:;">删除</a>|</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>5</td>
+					<td>王五</td>
+					<td>14</td>
+					<td>男</td>
+					<td><a href="javascript:;">上移</a>|<a href="javascript:;">下移</a>|<a href="javascript:;">删除</a>|</td>
+				</tr>
+			</tbody>
+		</table>
+		<script type="text/javascript">
+			var tab = document.getElementById('tab');
+			//var form = document.getElementsByTagName('form')[0];
+			var form = document.getElementById("div1")
+			//"添加"“反选”按钮
+			var btns = form.getElementsByTagName('button');
+			//"姓名"输入框，“年龄”输入框;
+			var inps1 = form.getElementsByTagName('input');
+			//“性别”“编号”“升续”
+			var select = form.getElementsByTagName('select');
+			//头部thead
+			var head = tab.tHead;
+			//tbody(注意tBodies[0])
+			var tbody1 = tab.tBodies[0];
+			//全选框
+			var inps3 = head.getElementsByTagName('input')[0];
+			var tr = tbody1.getElementsByTagName('tr');
+			//单选框
+			var inps2 = tbody1.getElementsByTagName('input');
+			//获取表格的行(获取是集合)
+			var trRows = tbody1.rows;
+			var num = trRows.length;
+			var str = ''; 
+			var arr = ['coral','plum']
+			//点击“添加”按钮
+			btns[0].onclick = function(){
+				var Tr = document.createElement('tr');
+				//创建单选框
+				var Td = document.createElement('td');
+				Td.innerHTML = '<input type="checkbox">';
+				Tr.appendChild(Td);
+				//创建ID
+				var Td = document.createElement('td');
+				Td.innerHTML = num+1;
+				num++;
+				Tr.appendChild(Td);
+				//创建姓名
+				var Td = document.createElement('td');
+				Td.innerHTML = inps1[0].value;
+				Tr.appendChild(Td);
+				//创建年龄
+				var Td = document.createElement('td');
+				Td.innerHTML = inps1[1].value;
+				Tr.appendChild(Td);
+				//创建性别
+				var Td = document.createElement('td');
+				Td.innerHTML = select[0].value;
+				Tr.appendChild(Td);
+				//创建"操作"
+				var Td = document.createElement('td');
+				Td.innerHTML = '<a href="javascript:;">上移</a>|<a href="javascript:;">下移</a>|<a href="javascript:;">删除</a>|';
+				Tr.appendChild(Td);
+				tbody1.appendChild(Tr);
+				changeColor();
+				moveprev();
+				movenext();
+				dele();
+				fn1();
+			}
+			//点击每个单选框，全选框会被选中
+			fn1();
+			function fn1(){
+				for(var i=0;i<inps2.length;i++){
+					inps2[i].index=i;
+					inps2[i].onchange = function(){
+						//函数里面拿不到i值，所以要添加索引；
+						inps3.checked = checkall();
+						if(this.checked){
+							this.parentNode.parentNode.style.background= 'yellow';
+						}else{
+							this.parentNode.parentNode.style.background = arr[this.index%arr.length];
+						}
+					}
+				}
+			}
+			//点击“全选”,每个单选框被选中
+			all();
+			function all(){
+				inps3.onchange = function(){
+					for(var i=0;i<inps2.length;i++){
+						inps2[i].checked = this.checked;
+						//隔行变色
+						inps2[i].parentNode.parentNode.style.background = arr[i%arr.length];
+						if(this.checked){
+							inps2[i].parentNode.parentNode.style.background = '';
+							inps2[i].parentNode.parentNode.className = 'active';
+						}else{
+							inps2[i].parentNode.parentNode.className = '';
+							inps2[i].parentNode.parentNode.style.background = arr[i%arr.length];
+	
+						}
+					}
+				};
+			}
+			function checkall(){
+				for(var i=0;i<inps2.length;i++){
+					if(!inps2[i].checked){
+						return false;
+					}
+				}
+				return true;
+			}
+			//上移操作
+			moveprev();
+			function moveprev(){
+				for(var i=0;i<trRows.length;i++){
+					
+					var tr = tbody1.getElementsByTagName('tr')[i];
+					var as = tr.getElementsByTagName('a');
+					as[0].onclick = function(){
+						if(this.parentNode.parentNode.previousElementSibling){
+							tbody1.insertBefore(this.parentNode.parentNode,this.parentNode.parentNode.previousElementSibling);
+						}else{
+							alert('已经到第一个了，无法继续上移');
+						}
+						changeColor();
+					}
+				}
+			}
+			//下移操作
+			movenext();
+			function movenext(){
+				for(var i=0;i<trRows.length;i++){
+					var tr = tbody1.getElementsByTagName('tr')[i];
+					var as = tr.getElementsByTagName('a');
+					as[1].onclick = function(){
+						if(this.parentNode.parentNode.nextElementSibling){
+							tbody1.insertBefore(this.parentNode.parentNode.nextElementSibling,this.parentNode.parentNode);
+						}else{
+							alert('已经到最后一个了，无法继续下移');
+						}
+						changeColor();
+					}				
+				}
+				
+			}
+			//删除操作
+			dele();
+			function dele(){
+				for(var i=0;i<trRows.length;i++){
+					var tr = tbody1.getElementsByTagName('tr')[i];
+					var as = tr.getElementsByTagName('a');
+					as[2].onclick = function(){
+						//从需要删除的节点的父节点下下边删除节点，只能是父级，不能是爷爷级
+						tbody1.removeChild(this.parentNode.parentNode);
+					}	
+				}				
+			}
+			//隔行变色函数
+			changeColor();
+			function changeColor(){
+				for(var i=0;i<inps2.length;i++){
+						inps2[i].parentNode.parentNode.style.background = arr[i%arr.length];
+					}
+			}
+			//反选
+			btns[1].onclick = function(){
+				changeColor();
+				for(var i= 0;i<inps2.length;i++){
+					inps2[i].checked = !inps2[i].checked;
+					if(inps2[i].checked){
+						console.log(inps2[i].parentNode.parentNode)
+						inps2[i].parentNode.parentNode.style.background= 'yellow';
+					}
+				}	
+			};
+			//批量删除
+			btns[2].onclick = function(){
+				for(var i= 0;i<inps2.length;i++){
+					if(inps2[i].checked){
+						tbody1.removeChild(inps2[i].parentNode.parentNode);
+						i--;
+						changeColor();
+					}
+				}
+//				if(trRows.length ==0){
+//					inps3.checked = false;
+//				}
+			}
+			//排序
+			btns[3].onclick = function(){
+				var arr = Array.from(tr);//数组转集合
+				var num;
+				if(select[1].value == '编号'){
+					num = 1;
+				}else{
+					num = 3;
+				}
+				//console.log(arr[0].children[3])
+				arr.sort(function(a,b){
+					a = a.children[num].innerHTML;
+					b = b.children[num].innerHTML;
+					if(select[2].value == '升序'){
+						return a-b;
+					}else{
+						return b-a;
+					}
+				})
+				for(var i=0;i<arr.length;i++){
+					tbody1.appendChild(arr[i]);
+					changeColor();
+				}
+			}
+			//模糊搜索
+			btns[4].onclick = function(){
+				//console.log(trRows[0].cells[1])
+				for(var i=0;i<trRows.length;i++){
+					if(inps1[2].value==trRows[i].cells[1].innerHTML||inps1[2].value==trRows[i].cells[2].innerHTML||inps1[2].value==trRows[i].cells[3].innerHTML){
+						//debugger
+						prev = trRows[i].style.background;
+						trRows[i].style.background = '';
+						trRows[i].style.background = 'green';
+					}else{
+						if(trRows[i].style.background == 'green'){
+							trRows[i].style.background = '';
+							trRows[i].style.background = prev;
+						}
+						
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
