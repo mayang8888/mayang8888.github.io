@@ -1,0 +1,704 @@
+/*样式重置*/
+body,h1,h2,p,h3,h4,dl,dd{
+	margin: 0;
+}
+ul,figure,figcaption,img{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+img{
+	border: none;
+}
+form{
+	margin:0;
+}
+input{
+	padding:0;
+	margin:0;
+}
+/*加载页面*/
+#loading{
+	width: 1349px;
+	height: 667px;
+	/*position: fixed;
+	left: 0;
+	top: 0;*/
+    background: #fcfcfc;
+    display: none;
+}
+.loadline{
+	width: 1349px;
+	height: 8px;
+	background: #dddddd;
+}
+.line{
+	width: 1000px;
+	height: 100%;
+	background: #7bc91e;
+}
+.logo-text{
+	height: 667px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+}
+.logo-text .p1{
+	margin: 10px 0 5px 0;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: arial;
+    color: #2a2a2a;
+    text-shadow:  3px 3px 5px #7cba32;
+    /*
+      text-shadow:x轴的偏移量,y轴的偏移量,模糊半径,颜色;
+      */
+}
+.logo-text .p2{
+	font-size: 16px;
+    color: #acacac;
+    font-weight: bold;
+    font-family: "arial narrow";
+}
+/*主页面*/
+#section{
+	position: absolute;
+	transition:all 1s cubic-bezier(1,-0.02, 0.25, 1.07) !important;
+	display: none;
+}
+.nav{
+	width: 100%;
+	height: 100px;
+	background: url(../images/headBg.png) repeat;
+	position: fixed;
+	z-index: 10;
+	display: none;
+}
+#logo{
+	width: 1349px;
+	height: 100px;
+	color: white;
+}
+#logo div{
+	float: left;
+	margin-top: 20px;
+}
+#logo ul{
+	float: right;
+}
+.logo-small{
+	width: 57px;
+	height: 57px;
+	margin-left: 30px;
+}
+.logo-small img{
+	width: 100%;
+	height: 100%;
+}
+.p3,.p4{
+	margin-left: 8px;
+}
+.p3{
+	font-size: 22px;
+	font-weight: bold;
+	font-family: "楷体";
+	margin-top: 14px;
+}
+.p4{
+	font-size: 12px;
+	font-family: "arial narrow";
+}
+.nav li {
+    width: 94px;
+    height: 29px;
+    line-height: 29px;
+    text-align: center;
+    font-size: 18px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+#nav-right{
+    margin: 50px 120px 0 0;
+    float: right;
+    transition: all 400ms;
+   display: block;
+}
+#nav-right a{
+	color: #fff;
+}
+.logo-right {
+    width: 24px;
+    height: 18px;
+    background: url(../images/navBtn.png) no-repeat center;
+    position: absolute;
+    right: 30px;
+    top: 60px;
+    transition: all 400ms;;
+}
+.t2{
+	background: url(../images/navCur2.png) no-repeat;
+	position: absolute;
+	top: 40px;
+	width: 100%;
+	height: 100%;
+}
+.t1{
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+.bgimages{
+	width: 1349px;
+	height: 687px;
+	overflow: hidden;
+}
+#img1{
+	width: 100%;
+	height: 100%;
+}
+#page1{
+	position: relative;
+}
+.glogo{
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	left:50%;
+	top:50%;
+	margin-top:-210px;
+	margin-left:-210px;
+}
+.glogo img{
+	width: 100%;
+	height: 100%;
+}
+.mouse{
+	width: 22px;
+	height: 32px;
+	position: absolute;
+	left: 50%;
+	margin-left: 22px;
+	bottom: 20px;	
+}
+.logot-1{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	text-align: center;
+	color: #FFF;
+}
+.logotp1{
+	margin-top: 96px;
+	font-size: 22px;
+	font-family: arial;
+	font-weight: bold;
+}
+.logotp2{
+	font-weight: bold;
+    font-family: "楷体";
+    font-size: 30px;
+}
+.logot-2{
+	margin-top: 20px;
+	margin-left: 50px;
+	margin-right: 50px;
+	padding: 20px 0;
+	border-top: 1px solid #FFf;
+	border-bottom: 1px solid #FFf;
+}
+.logotp3{
+	font-size: 28px;
+	font-family: arial;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.logotp4{
+	font-size: 12px;
+	font-family: arial;
+	line-height: 20px;
+}
+.rotate{
+	transform: rotate(90deg);
+}
+.view{
+	width: 135px;
+	height: 42px;
+	text-align: center;
+	background: url(../images/navCur2.png) no-repeat;
+	background-size: 100%;
+	position: absolute;
+	bottom: 40px;
+	left: 50%;
+	margin-left: -60px;
+	border-radius: 25px;
+}
+.view a{
+	color: #fff;
+	font-family: fantasy;
+	font-size: 20px;
+	display: block;
+	margin: 5px 10px;
+	padding-top: 4px;
+}
+.view:hover {
+	transition: all 1s ease;
+	background: #FFF9FF;
+}
+.view:hover a{
+	transition: all 1s ease;
+	color: #7ec529;
+}
+/*第二页*/
+#page2{
+	width:1349px;
+	height: 567px;
+	padding: 50px 0;
+	position: relative;
+	overflow: hidden;
+}
+.page2{
+	width: auto;
+	padding: 0 5%;
+}
+.about{
+	width: 100%;
+    margin: 0 0 60px 0;
+    font-size: 36px;
+    color: #3a3a3a;
+    font-family: inherit;
+    font-weight: bold;
+}
+.about span{
+	padding : 0 36px 0 0;
+	background: url(../images/i1.png) no-repeat bottom right;
+}
+.page2-left{
+	width: 49%;
+	float: left;
+	font-size: 14px;
+	line-height: 28px;
+}
+.page2-left p{
+	margin: 0 0 28px 0;
+	text-indent: 2em;
+}
+.right{
+	width: 47%;
+	float: right;
+	position: absolute;
+	right: -650px;
+	bottom: 40px;
+	opacity: 0.1;
+	transition: 2s;
+}
+.more{
+	width: 100%;
+	text-align: center;
+	float: left;
+	margin-top: 80px;
+}
+.more a{
+	width: 160px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 24px;
+    color: #fff;
+    background: #7bc91e;
+    display: inline-block;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 25px;
+    transition: 400ms;
+    font-family: fantasy;
+}
+.more a:hover{
+	background: #b2b2b2;
+}
+/*第三页*/
+#page3{
+	padding: 80px 0;
+	background: #f8f8f8;
+}
+.page3{
+	width: 1180px;
+	margin: 0 auto;
+}
+.title-p2{
+	font-size: 26px;
+    line-height: 36px;
+    margin: 0 0 20px 0;
+    font-family: fzlt;
+}
+.title-p3{
+	font-size: 14px;
+    line-height: 20px;
+    font-family: helvetica;
+    text-transform: uppercase;
+    margin-bottom: 65px;
+    color: #9b9797;
+}
+.f-img{
+	width: 100%;
+	height: 365px;
+}
+.f1{
+	position: relative;
+	width: 22%;
+	overflow: hidden;
+    height: 350px;
+    margin: 0 15px 0 15px;
+    text-align: center;
+    float: left;
+    transition: 400ms;
+}
+.f1 figcaption{
+	position: absolute;
+	bottom: -60px;
+	width: 263px;
+}
+.f1 img{
+	height: 64px;
+	margin-top: 100px;
+	transition: all 0.7s;
+}
+.f1 figcaption p{
+	line-height: 30px;
+	text-align: center;
+	transition: all 0.7s;
+	color: #fff;
+	font-size: 14px;
+	font-family:helvetica;
+}
+.f1 div{
+	transition: all 0.7s;
+}
+.f1 h3{
+	margin: 16px 0;
+	color: #3a3a3a;
+}
+.f1-p{
+    font-size: 14px;
+    color: #9b9797;
+    font-family: Helvetica;
+    text-transform: uppercase;
+}
+.f1:hover{
+	background: #fff;
+}
+.f1:hover figcaption{
+	bottom: 20px;
+}
+.f1-t{
+	border-left: 1px solid #f8f8f8;
+	border-top: 1px solid #f8f8f8;
+	border-right: 1px solid #f8f8f8;
+}
+.f1:hover .f1-t{
+	border-left-color:#7bc91d;
+	border-top-color:#7bc91d;
+	border-right-color:#7bc91d;
+}
+.f1:hover .f1-d{
+	width: 100%;
+	height: 100%;
+	padding: 20px 0px;
+	background: #7bc91d;
+}
+/*第四页面*/
+#page4,#page5{
+	padding: 100px 0 100px 0;
+}
+#page4{
+	background: #292929;
+}
+.page4,.page5{
+	width: 1180px;
+	height: 550px;
+    margin: 0 auto;
+}
+#page4 .about{
+	color: #FFF;
+}
+.menu-wrap{
+	margin-bottom: 55px;
+	height: 38px;
+}
+.menu{
+	float: left;
+}
+.btn{
+	float: right;
+}
+.menu a{
+	height: 25px;
+	line-height: 25px;
+	color: #FFF9FF;
+	border-radius: 15px;
+	border: 2px solid #292929;
+	display: inline-block;
+	margin-bottom: 10px;
+	font-size: 18px;
+	padding: 0 20px;
+}
+.menu a:hover{
+	border-color: #7BC91D;
+	transition: 400ms;
+}
+.listbox{
+	position: relative;
+	height: 284px;
+}
+.list{
+	width: 100%;
+}
+.figure{
+	float: left;
+	width: 21.8%;
+    padding: 0 0 5px 0;
+    line-height: 24px;
+    border-bottom: 4px solid #3a3a3a;
+    margin: 0 31px 0 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+}
+.figure img{
+	width: 100%;
+	height: 100%;
+	transition: all 0.4s;
+}
+.figcaption{
+	width: 85%;
+	height: 61%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #FFF;
+	transition: all 0.4s;
+}
+.t{
+	margin: 10px 0 0 0;
+    height: 24px;
+    overflow: hidden;
+    color: #6b6b6b;
+    font-size: 18px;
+    transition: 400ms;
+}
+.time{
+	font-size: 14px;
+	color: #fff;
+}
+.figcaption p,div{
+	transition: all 0.4s;
+}
+.text1 h2{
+	margin-bottom: 10px;
+}
+.text1 .figcaption p{
+	background: #fff;
+	color: #333;
+	margin: 5px;
+	display: inline-block;
+	transform: translate(-150px,0px);
+}
+.text1 .figcaption div:nth-of-type(1) p{
+	transition-delay: 0.05s;
+}
+.text1 .figcaption div:nth-of-type(2) p{
+	transition-delay: 0.15s;
+}
+.text1 .figcaption{
+	padding: 40px;
+}
+.text1:hover .figcaption p{
+	transform: translate(0px,0px);
+}
+.figure:hover .img1{
+	opacity: .5;
+}
+
+.text2 .figcaption{
+	width: 100%;
+	height: 100%;
+}
+.text2 .figcaption h2{
+	margin-top: 18%;
+	margin-left: 18%;
+}
+.text2 .figcaption p{
+	margin-top: 2%;
+	margin-left: 18%;
+}
+.text2 .figcaption div{
+	border: 2px solid #fff;
+	width: 78%;
+	height: 60%;
+	position: absolute;
+	top: 8%;
+	left: 10%;
+	transform: translate(0px,-200px) rotate(0deg);
+}
+/*如果在同一个属性中多次用到transform，不能多次写，在后面添加空格继续写就可以了*/
+.text2:hover .figcaption div{
+	transform: translate(0px,0px) rotate(360deg);
+}
+.figure:hover{
+	border-bottom-color: greenyellow;
+}
+
+.text3 .figcaption{
+	top: 18%;
+	left: 20%;
+}
+.text3 .figcaption p{
+	transform: skew(90deg);
+	transition-delay: 0.15s;
+}
+.text3:hover .figcaption p{
+	transform: skew(0deg);
+	transition-delay: 0.15s;
+}
+
+.text4 .figcaption{
+	top: 18%;
+	left: 20%;
+}
+.text4 .img2{
+	width: 257px;
+	height: 208px;
+	margin-bottom: 16px;
+	overflow: hidden;
+}
+.text4 img{
+	width: 100%;
+	height: 100%;
+}
+.text4 .figcaption div{
+	border: 2px solid #fff;
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	top: -9%;
+	left: -6%;
+	transform: scale(1.2,1.2);
+}
+.text4:hover .figcaption div{
+	transform: scale(1,1);
+}
+.text4:hover img{
+	transform: scale(1.2,1.2);
+}
+#page5{
+	width: 100%;
+	height: 600px;
+}
+/*第五页*/
+#page5 .page5_left{
+	width: 45%;
+	float: left;
+}
+#page5 .page5{
+	overflow: hidden;
+}
+#page5 .txt{
+	height: 376px;
+	overflow: hidden;
+}
+#page5 .txt_p1{
+	font-size: 24px;
+    color: #3a3a3a;
+}
+.address p{
+	padding-left: 30px;
+}
+.txt_p2{
+	margin: 15px 0 70px 0;
+    line-height: 24px;
+    font-size: 14px;
+    color: #515151;
+}
+.txt_p3{
+	background: url(../images/i2.png) no-repeat left 5px;
+}
+.txt_p4{
+	background: url(../images/i3.png) no-repeat left;
+}
+.txt_p5{
+	background: url(../images/i4.png) no-repeat left 5px;
+}
+.txt .address {
+    margin: 0 0 90px 0;
+    line-height: 40px;
+    font-size: 14px;
+    color: #3a3a3a;
+    font-family: "微软雅黑";
+}
+.page5 .page5_right{
+	width: 49%;
+	float: right;
+}
+.page5 .right .right_txt{
+	height: 460px;
+}
+.right_t1{
+    margin: 0 0 35px 0;
+    color: #515151;
+}
+.right_t1 p{
+	font-size: 13px;
+    padding: 0 0 5px 20px;
+}
+textarea { 
+    width: 94%;
+    padding: 3%;
+    line-height: 24px;
+    overflow: hidden;
+    color: #515151;
+    resize: none;
+    border: none;
+    border-radius: 20px;
+    background: #e8e8e8; 
+    outline: none;  
+}
+.right_t1 span{
+	font-size: 14px;
+}
+.right_txt .right_t1 .input1 {
+    width: 97%;
+    height: 14px;
+    padding: 13px 0 13px 3%;
+    color: #515151;
+    border: none;
+    border-radius: 20px;
+    background: #e8e8e8;
+    outline: none;  
+}
+.right_send{
+	margin: 0 0 35px 0;
+    color: #515151;
+}
+#page5 .right_send .send{
+	width: 184px;
+    height: 54px;
+    border: none;
+    border-radius: 25px;
+    font-size: 24px;
+    color: #fff;
+    background: #7bc91e;
+    cursor: pointer;
+    transition: 300ms;
+    position: absolute;
+    outline: none;
+    font-family: fantasy;
+    letter-spacing: 5px;
+}
+#page5 .right_send .send:hover{
+	background: #b2b2b2;
+}
