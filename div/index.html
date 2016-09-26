@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 60px;
+				height: 60px;
+				position: absolute;
+				top: 0;
+				background: chocolate;
+			}
+		</style>
+		<script type="text/javascript" src="tween.js"></script>
+		<script type="text/javascript" src="mTween.js"></script>
+	</head>
+	<body>
+		<script>
+			var str = '';
+			var len = 10;
+			var n = 0;
+			var target = 400;
+			var target1 = 0;
+			var onoff = true;
+			for(var i=0;i<len;i++){
+				var Left = i*70;
+				str += '<div style="left:'+Left+'px;">'+i+'</div>';
+			}
+			document.body.innerHTML = str;
+			var divs = document.getElementsByTagName('div');
+			function prev(obj,target){
+				mTween(obj,'top',target,500,'linear')
+				setTimeout(function(){
+					if(!obj.previousElementSibling){
+						return;
+					}
+					obj = obj.previousElementSibling;
+					prev(obj,target);
+				},200)
+			}
+			function next(obj,target){
+				mTween(obj,'top',target,500,'linear')
+				setTimeout(function(){
+					if(!obj.nextElementSibling){
+						return;
+					}
+					obj = obj.nextElementSibling;
+					next(obj,target);
+				},200)
+			}
+			function Sprev(obj,target){
+				mTween(obj,'top',target,500,'linear')
+				setTimeout(function(){
+					if(!obj.previousElementSibling){
+						return;
+					}
+					obj = obj.previousElementSibling;
+					Sprev(obj,target);
+				},200)
+			}
+			function Nprev(obj,target){
+				mTween(obj,'top',target,500,'linear')
+				setTimeout(function(){
+					if(!obj.nextElementSibling){
+						return;
+					}
+					obj = obj.nextElementSibling;
+					Nprev(obj,target);
+				},200)
+			}
+			var onoff = true;
+			for(var i=0;i<len;i++){
+				divs[i].onclick = function(){
+					if(onoff){
+						//这里不能用i值，找不到
+						prev(this,target);
+						next(this,target);
+						onoff = !onoff;
+					}else{
+						Sprev(this,target1);
+						Nprev(this,target1);
+						onoff = true;
+					}
+					
+				}
+			}
+
+			
+				
+		</script>
+	</body>
+</html>
