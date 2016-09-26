@@ -1,0 +1,124 @@
+<!DOCTYPE html >
+<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>无标题文档</title>
+	<style type="text/css">
+		body{
+			background-color: #F1F1F1;
+		}
+		ul{
+			margin:0 auto;
+			padding: 0;
+			width: 1208px;
+		}
+		li{
+			list-style-type: none;
+			float: left;
+			padding: 10px;
+			margin: 0 1px;
+			background-color: white;
+			width: 280px;
+			height: 220px;
+		}
+		p{	
+			width: 280px;
+			height: 40px;
+			margin: 0;
+			text-align: center;
+			background-color: #F1F1F1;
+			line-height: 40px;
+			font-size: 20px;
+			font-weight: bold;
+		}
+		img{
+			vertical-align: top;
+			width: 280px;
+			height: 180px;
+		}
+		div{
+			margin:0 auto;
+			width: 210px;
+		}
+		div:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+		a{
+			text-decoration: none;
+			width: 100px;
+			line-height: 40px;
+			display: block;
+			color: white;
+			background-color: #009999;
+			text-align: center;
+			float: left;
+		}
+		a:nth-child(1){
+			margin-right: 10px;
+		}
+		a:hover{
+			background: red;
+		}
+	</style>
+	</head>
+	<body>
+		<div>
+			<a href="javascript:;">从小到大</a><a href="javascript:;">打乱顺序</a>
+		</div>
+		<ul>
+			<li><img src="img/1.jpg" alt=""><p>1-温馨时钟</p></li>
+			<li><img src="img/2.jpg" alt=""><p>2-棉花糖</p></li>
+			<li><img src="img/3.jpg" alt=""><p>3-汽车摇滚</p></li>
+			<li><img src="img/4.jpg" alt=""><p>4-sunshine</p></li>
+			<li><img src="img/5.jpg" alt=""><p>5-柠檬之恋</p></li>
+			<li><img src="img/6.jpg" alt=""><p>6-绿色键盘</p></li>
+			<li><img src="img/7.jpg" alt=""><p>7-游戏官网</p></li>
+			<li><img src="img/8.jpg" alt=""><p>8-美丽邂逅</p></li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		var as = document.getElementsByTagName('a');
+		var imgs = document.getElementsByTagName('img');
+		var ps = document.getElementsByTagName('p');
+		var onoff = true;
+		var Arr = [];
+		var Url = [];
+		var Ptext = [];
+		as[0].onclick = function(){
+			if(onoff){
+				this.innerHTML = '从大到小';
+				Arr.sort(function(a,b){
+					return b-a;
+				})
+				fn();
+				onoff = !onoff;
+			}else{
+				this.innerHTML = '从小到大';
+				Arr.sort(function(a,b){
+					return a-b;
+				})
+				fn();
+				onoff = true;
+			}
+		}
+		for(var i=0;i<imgs.length;i++){
+			Url.push(imgs[i].src);//console.log(Url)
+			Arr.push(i);//console.log(Arr)
+			Ptext.push(ps[i].innerHTML);//console.log(Ptext)
+		}
+		function fn(){
+			for(var i=0;i<imgs.length;i++){
+				imgs[i].src = Url[Arr[i]];//console.log(imgs[i].src)
+				ps[i].innerHTML = Ptext[Arr[i]];	
+			}
+		}
+		as[1].onclick = function(){
+			Arr.sort(function(){
+				return Math.random()-0.5;
+			})
+			fn();
+		}
+	</script>
+</html>
