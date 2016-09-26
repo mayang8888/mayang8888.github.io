@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		    *{
+		    	padding: 0;
+		    	margin: 0;
+		    }
+		    div{
+		    	float: left;
+		    }
+		    p{
+		    	color: #002952;
+		    	font-size: 18px;
+		    }
+			#left,#right{
+				width: 350px;
+				height: 200px;
+				border: 10px solid plum;
+				border-radius: 20px;
+				padding: 20px;
+				margin-top: 30px;
+				box-shadow: 0 0 10px 10px plum;
+				position: relative;
+			}
+			#left{
+				margin-left: 200px;
+			}
+			#center{
+				width: 150px;
+				height: 250px;
+				margin-top: 30px;
+				position: relative;
+			
+			}
+			#center a{
+				display: block;
+				text-decoration: none;
+				width: 80px;
+				height: 40px;
+				line-height: 40px;
+				background: peachpuff;
+				color: #FFF9FF;
+				font-weight: blod;
+				text-align:center;
+				font-size: 36px;
+				border-radius: 10px;
+				margin-top: 10px;
+			}
+		 	#toRight{
+				position: absolute;
+				top: 50px;
+				left: 34px;
+			}
+			#toLeft{
+				position: absolute;
+				top: 100px;
+				left: 34px;
+			}
+			ul{
+				position: absolute;
+				bottom: 30px;
+				text-align: center;
+				width: 150px;
+				height: 14px;
+			}
+			#center li{
+				display: inline-block;
+				width: 14px;
+				height: 14px;
+				list-style: none;
+				border-radius: 50%;
+				background: #333;
+			}
+			#center .active{
+				background: yellow;
+			}
+			span{
+				display: block;
+				width: 100px;
+				height: 40px;
+				background: palevioletred;
+				border-radius: 10px;
+				position: absolute;
+				bottom: 10px;
+				left: 150px;
+				color: #FFF9FF;
+				line-height: 40px;
+				text-align: center;
+			}
+			
+		</style>
+		<script type="text/javascript" src="mQuery.js"></script>
+	</head>
+	<body>
+		<!--左侧-->
+		<div id="left">
+			<!--换行被解析会出现延迟-->
+			<p>
+			     《爱情》
+			歌手：莫文蔚 若不是因为爱着你 怎么会夜深还没睡意 每个念头都关于你我想你 想你 好想你
+			若不是因为爱着你 怎会有不安的情绪 每个莫名的日子里 我想你 想你 好想你
+			爱是折磨人的东西 却又舍不得这样放弃 不停偳测你的心里 可有 我姓名 爱是我唯一的秘密
+			 让人心碎却又着迷 无论是用什么言语 只会 只会 思念你
+			
+			</p>
+			<span></span>
+		</div>
+		<div id="center">
+			<a href="javascript:;" id="toRight">→</a>
+			<a href="javascript:;" id="toLeft">←</a>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<!--右侧-->
+		<div id="right">
+			<p></p>
+			<span></span>
+		</div>
+		<script>
+			var left = $("#left");
+			var right = $('#right');
+			var toRight = $('#toRight');
+			var toLeft = $('#toLeft'); 
+			var timer = null;
+			var lp = $('p','#left')[0];
+			var lspan = $('span','#left')[0];
+			var rp = $('p','#right')[0];
+			var rspan = $('span','#right')[0];
+			var lis = $('li','ul');
+			var onoff = true;
+			var num = 0;
+			//点击右箭头，文字向右搬运
+			toRight.onclick = function(){
+				fn1(lp,rp,lspan,rspan);
+			}
+			toLeft.onclick = function(){
+				fn1(rp,lp,rspan,lspan);
+			}
+			function fn1(a,b,c,d){
+				//防止多次点击
+				if(!onoff){
+					return;
+				}
+				onoff = false;
+				if(len<=0){
+					alert('已经没有文字了')
+					return;
+				}
+				var len = a.innerHTML.length;//console.log(len)
+				timer = setInterval(function(){
+					//
+					b.innerHTML += a.innerHTML.substring(0,1); 
+					a.innerHTML =a.innerHTML.substring(1); 
+					//左边字数
+					c.innerHTML =  a.innerHTML.length +'/'+len;
+					d.innerHTML = b.innerHTML.length+'/'+len;
+					//跑马灯
+					fn();
+					//如果左边没有文字，就清除定时器
+					if(a.innerHTML == ''){
+						onoff = true;
+						clearInterval(timer);
+					}
+				},30)
+			}
+			
+			//跑马灯
+			function fn(){
+				lis[num].className = '';
+				num++;
+				num %= lis.length;
+				lis[num].className = 'active';
+			}
+		</script>
+	</body>
+</html>
