@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div1{
+				width: 1000px;
+				height: 550px;
+				margin: 0 auto;
+				padding: 20px;
+				border: 10px solid #66512C;
+				background: #CCCCCC;
+			}
+			#div2,#div3{
+				width: 100px;
+			    height: 15px;
+			    padding: 7px;
+			    border: 2px solid #002952 ;
+			    font-size: 14px;
+			    font-weight: bold;
+			    text-align: center;
+			    display: inline-block;
+			}
+			p{
+				border-top: 2px solid black;
+			}
+			#ul{
+				width: 1000px;
+				height: 485px;
+				overflow: hidden;
+			}
+			li{
+				list-style: none;
+				width: 100px;
+				height: 80px;
+				padding: 7px;
+				text-align: center;
+				position: relative;
+				display: inline-block;
+				margin: 2px;
+			}
+			.inp1{
+				width: 24px;
+				height: 20px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				display: none;
+			}
+			.inp2{
+				width: 80px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1">
+			<div id="div2"><img src="img/1.jpg" />新建文件夹</div>
+			<div id="div3">删除文件夹</div>
+			<p></p>
+			<ul id="ul">
+				<!--<li>
+					<input type="checkbox" id="inp1"/>
+					<img src="img/ico.jpg" alt=""/>
+					<input type="text" value="新建文件夹" id="inp2"/>
+				</li>-->
+			</ul>
+			
+		</div>
+		<script>
+			//新建按钮
+			var div2 = document.getElementById('div2');
+			//删除按钮
+			var div3 = document.getElementById('div3');
+			var ul = document.getElementById('ul');
+			var inps = ul.getElementsByTagName('input');
+			var lis = ul.getElementsByTagName('li');
+			div3.onmouseover = div2.onmouseover = function(){
+				this.style.borderColor = '#0080C4';
+			}
+			div3.onmouseout = div2.onmouseout = function(){
+				this.style.borderColor = '';
+			}
+			//点击新建文件夹
+			div2.onclick = function(){
+				//生成多个元素不能换行
+				ul.innerHTML += '<li><input type="checkbox" class="inp1"/><img src="img/ico.jpg" alt=""/><input type="text" value="新建文件夹"class="inp2"/></li>';
+				for(var i=0;i<lis.length;i++){
+					var num=1;
+					//鼠标移入新建的文件夹
+					lis[i].onmouseover = function(){
+						var inps = this.getElementsByTagName('input');//在this下面获取
+						this.style.background = 'green';
+						inps[0].style.display = 'inline-block';
+						//鼠标点击新建的文件夹
+						inps[0].onclick = function(){
+							if(this.checked){
+								this.parentNode.style.background = 'green';
+							}
+						}
+					}
+					//鼠标移出新建的文件夹
+					lis[i].onmouseout = function(){
+						var inps = this.getElementsByTagName('input');
+						if(!this.firstElementChild.checked){
+							this.style.background = '';
+							inps[0].style.display = '';
+						}
+					};
+				}
+			}
+			//点击删除文件夹
+			div3.onclick = function(){
+				if(lis.length==0){
+					alert('没有文件夹可删除！');
+				}else{
+					for(var i=0;i<lis.length;i++){
+						if(lis[i].firstElementChild.checked){
+							ul.removeChild(lis[i]);
+							i--;
+						}
+					}
+				}
+				
+			};
+		</script>
+	</body>
+</html>
