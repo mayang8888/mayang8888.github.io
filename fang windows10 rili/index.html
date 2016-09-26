@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/calendar.css">
+    <script type="text/javascript" src="js/calendar.js"></script>
+</head>
+<body>
+    <section id="calendar">
+        <div id="mask"></div>
+        <div id="content">
+            <div id="time"><!-- 12:08:08 --></div>
+            <a href="javascript:;" id="date"><!-- 2016年7月3日,星期日--></a>
+            <div id="setDate">
+                <a href="javascript:;" id="upper"><!-- 2016年7月 --></a>
+                <p>
+                    <a href="javascript:;" id="prevMonth"><</a>
+                    <a href="javascript:;" id="nextMonth">></a>
+                </p>
+            </div>
+            <p id="weeks">
+                <a href="javascript:;">一</a>
+                <a href="javascript:;">二</a>
+                <a href="javascript:;">三</a>
+                <a href="javascript:;">四</a>
+                <a href="javascript:;">五</a>
+                <a href="javascript:;">六</a>
+                <a href="javascript:;">日</a>
+            </p>
+            <div id="everyDay">
+               <!-- <a href="javascript:;" class="old">1</a>
+               <a href="javascript:;" class="old">2</a>
+               <a href="javascript:;" class="old">3</a>
+               <a href="javascript:;" class="old">4</a>
+               <a href="javascript:;">5</a>
+               <a href="javascript:;">6</a>
+               <a href="javascript:;">7</a>
+               <a href="javascript:;">8</a>
+               <a href="javascript:;">9</a>
+               <a href="javascript:;" class="active">10</a>
+               <a href="javascript:;">11</a>
+               <a href="javascript:;">12</a>
+               <a href="javascript:;">13</a>
+               <a href="javascript:;">14</a>
+               <a href="javascript:;">15</a>
+               <a href="javascript:;">16</a>
+               <a href="javascript:;">17</a>
+               <a href="javascript:;">18</a>
+               <a href="javascript:;">19</a>
+               <a href="javascript:;">20</a>
+               <a href="javascript:;">21</a>
+               <a href="javascript:;">22</a>
+               <a href="javascript:;">23</a>
+               <a href="javascript:;">24</a>
+               <a href="javascript:;">25</a>
+               <a href="javascript:;">26</a>
+               <a href="javascript:;">27</a>
+               <a href="javascript:;">28</a>
+               <a href="javascript:;">29</a>
+               <a href="javascript:;">30</a>
+               <a href="javascript:;" class="old">1</a>
+               <a href="javascript:;" class="old">2</a>
+               <a href="javascript:;" class="old">3</a>
+               <a href="javascript:;" class="old">4</a>
+               <a href="javascript:;" class="old">5</a>
+               <a href="javascript:;" class="old">6</a>
+               <a href="javascript:;" class="old">7</a>
+               <a href="javascript:;" class="old">8</a>
+               <a href="javascript:;" class="old">9</a>
+               <a href="javascript:;" class="old">10</a>
+               <a href="javascript:;" class="old">11</a>
+               <a href="javascript:;" class="old">12</a> -->
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript">
+        var time = document.getElementById('time');
+        var date = document.getElementById('date');
+        var everyDay = document.getElementById('everyDay');
+        var upper = document.getElementById('upper');
+        var prevMonth = document.getElementById('prevMonth');
+        var nextMonth = document.getElementById('nextMonth');
+        init(time,date,upper,everyDay,prevMonth,nextMonth);
+    </script>
+</body>
+</html>
