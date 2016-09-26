@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#ul{
+				width: 300px;
+				height: 420px;
+				margin: 100px auto;
+			}
+			#ul li{
+				height: 40px;
+				width: 300px;
+				line-height: 40px;
+				font-size: 24px;
+				font-weight: bold;
+				background-color: mediumpurple;
+				list-style: none;
+				color: #fff;
+				border-top: 1px solid #F2DEDE;
+				text-align: center;
+			}
+			#ul .bg1{
+				background: purple;
+			}
+			#ul .bg2{
+				background: orange;
+				color: black;
+			}
+			#ul .fouce{
+				background: plum;
+				font-size: 32px;
+				color: black;
+			}
+			#ul .next{
+				background: pink;
+				font-size: 23px;
+				color: #6C6C6C;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="ul">
+			<li class="bg1">头部</li>
+			<li>111</li>
+			<li>222</li>
+			<li>333</li>
+			<li>444</li>
+			<li>555</li>
+			<li>666</li>
+			<li>777</li>
+			<li>888</li>
+			<li class="bg1">尾部</li>
+		</ul>
+		<script>
+			var ul = document.getElementById('ul');
+			var lis = ul.getElementsByTagName('li');
+			//获取ul下面的第一个子节点
+			var li0 = ul.firstElementChild;
+			//获取ul下面的最后一个子节点
+			var li8 = ul.lastElementChild;
+			for(var i=0;i<lis.length;i++){
+				//鼠标移入“头部”
+				li0.onmouseover = function(){
+					this.className = 'bg2';
+				};
+				//鼠标移入每个li
+				lis[i].onmouseover = function(){
+					this.className = 'fouce';
+					this.previousElementSibling.className = 'next';
+					this.nextElementSibling.className = 'next';
+					li0.className = 'bg1';
+					li8.className = 'bg1';
+				};
+				//鼠标移入“尾部”
+				li8.onmouseover = function(){
+					this.className = 'bg2';
+				};
+				//鼠标移出每个li
+				lis[i].onmouseout = function(){
+					for(var j=0;j<lis.length;j++){
+						lis[j].className = '';
+						li0.className = 'bg1';
+						li8.className = 'bg1';
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
