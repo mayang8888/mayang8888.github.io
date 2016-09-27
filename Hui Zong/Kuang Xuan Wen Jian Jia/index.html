@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			button{
+				width: 100px;
+				height: 30px;
+				margin-right: 10px;
+				border-radius: 5px;
+			}
+			li{
+				list-style: none;
+				width: 100px;
+				height: 100px;
+				background: url(img/folder.png) center no-repeat;
+				float: left;
+				margin-right: 10px;
+			}
+			label{
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+			.bg{
+				background-color: pink;
+			}
+			#div{
+				width: 0px;
+				height: 0px;
+				border: 1px dotted black;
+				display: none;
+				position: absolute;
+			}
+			li:hover{
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>
+		<button>新建文件夹</button>
+		<button>删除文件夹</button>
+		<ul id="list">
+			<!--<li class="checked">
+				<label>
+					<input type="checkbox" />
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="checkbox" />
+				</label>
+			</li>
+			<li>
+				<label>
+					<input type="checkbox" />
+				</label>
+			</li>-->
+		</ul>
+		<script>
+			var btns = document.getElementsByTagName('button');
+			var list = document.getElementById('list');
+			var div = document.getElementById('div');
+			var lis = document.getElementsByTagName('li');
+			var inps = list.getElementsByTagName('input');
+			var onoff = true;
+			//新建文件夹（阻止冒泡的事件必须一致，所以把onclick改为onmousedown）
+			create();
+			function create(){
+				btns[0].onmousedown = function(ev){
+					var li = document.createElement('li');
+					var inpt = document.createElement('input');
+					var laber = document.createElement('laber');
+					inpt.type = 'checkbox';
+					laber.appendChild(inpt);
+					li.appendChild(laber);
+					list.appendChild(li);
+					li.onmousedown = function(ev){
+						ev.cancelBubble = true;
+					}
+					inpt.onchange = function(ev){
+						if(this.checked){
+							this.parentNode.parentNode.className = 'bg';
+						}else{
+							this.parentNode.parentNode.className = '';
+						}
+					}
+					ev.cancelBubble = true;
+				};
+			}
+			//删除文件夹
+			dele();
+			function dele(){
+				btns[1].onmousedown = function(ev){
+					ev.cancelBubble = true;//阻止当前对象的当前事件的冒泡
+					var inpt = list.getElementsByTagName('input');
+					for(var i=0;i<inpt.length;i++){
+						if(inpt[i].checked){
+							list.removeChild(inpt[i].parentNode.parentNode);
+							i--;
+						}
+					}
+					
+				}
+			}
+			document.onmousedown = function(ev){
+				var disX = ev.clientX;
+				var disY = ev.clientY;
+				div.style.top = disY+'px';
+				div.style.left = disX+'px';
+				div.style.display = 'block';
+				document.onmousemove = function(ev){
+					var width = ev.clientX-disX;
+					var height = ev.clientY-disY;
+					if(width<0){
+						div.style.left = ev.clientX+'px';
+					}
+					if(height<0){
+						div.style.top = ev.clientY+'px';
+					}
+					div.style.width = Math.abs(width)+'px';
+					div.style.height = Math.abs(height)+'px';
+					for(var i=0;i<lis.length;i++){
+						//如果为true就是没有选中文件夹，就清掉lis[i]的className
+						if(CollisionTest(div,lis[i])){
+							lis[i].className = '';
+							inps[i].checked = false;
+						}else{
+							lis[i].className = 'bg';
+							//input自带“布尔值”，让input的checked = true;就是选中状态,默认是false。
+							inps[i].checked = true;
+						}
+					}
+					
+				};
+				document.onmouseup = function(ev){
+					document.onmousemove = null;
+					div.style.cssText = '';
+					ev.cancelBubble = true;
+				};
+			
+			};
+			
+			function getpos(obj){
+				return obj.getBoundingClientRect();
+			}
+			
+			function CollisionTest(obj1,obj2){
+				var pos1 = getpos(obj1);
+				var pos2 = getpos(obj2);
+ 				if(pos1.bottom<pos2.top||pos1.left>pos2.right||pos1.top>pos2.bottom||pos1.right<pos2.left){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		</script>
+	</body>
+</html>

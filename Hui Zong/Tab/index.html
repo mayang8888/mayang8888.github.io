@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#box{
+				width: 450px;
+				height: 30px;
+				margin: 10px auto;
+			}
+			#box input{
+				width: 80px;
+				height: 30px;
+				font-size: 20px;
+			}
+			#box1{
+				width: 500px;
+				height: 500px;
+				border: 5px solid #0A2B1D;
+				margin: 10px auto;
+			}
+			a{
+				display: none;
+				width: 70px;
+				line-height: 24px;
+				text-align: center;
+				padding: 0 6px;
+				position: relative;
+				text-decoration: none;
+				background: #7C7C7C;
+				float: left;
+				color:white;
+				font-size: 16px;
+			}
+			p{
+				width: 500px;
+				line-height: 476px;
+				background: palevioletred;
+				font-size: 50px;
+				font-weight:bold;
+				text-align: center;
+				margin: 0;
+				display: none;
+				float: left;
+			}
+			i{
+				font-style: normal;
+				font-size: 16px;
+				position: absolute;
+				right: 0;
+				top: 0;
+				display: inline-block;
+				width: 13px;
+				height: 24px;
+				background: #C0C0C0;
+				color: black;
+			}
+			span {
+				color: #F0F0F0;
+				font-weight: bold;
+			}
+			#box1 .show{
+				display: block;
+			}
+			#box1 .active{
+				background: pink;
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input type="button" value="按钮1"/>
+			<input type="button" value="按钮2"/>
+			<input type="button" value="按钮3"/>
+			<input type="button" value="按钮4"/>
+			<input type="button" value="按钮5"/>
+		</div>
+		<div id="box1">
+			<div id="head">
+				<!--<a href="javascript:;"><span>选项卡1</span><i>X</i></a>
+				<a href="javascript:;"><span>选项卡2</span><i>X</i></a>
+				<a href="javascript:;"><span>选项卡3</span><i>X</i></a>
+				<a href="javascript:;"><span>选项卡4</span><i>X</i></a>
+				<a href="javascript:;"><span>选项卡5</span><i>X</i></a>-->
+			</div>
+			<div id="content"> 
+				<!--<p>内容一</p>
+				<p>内容二</p>
+				<p>内容三</p>
+				<p>内容四</p>
+				<p>内容五</p>-->
+			</div>
+		</div>
+		<script>
+			var box = document.getElementById('box');
+			var head = document.getElementById('head'); 
+			var content = document.getElementById('content'); 
+			var inps = box.getElementsByTagName('input');
+			
+			for(var i=0;i<inps.length;i++){
+				inps[i].index = i;
+				inps[i].onclick = function(){
+					//创建元素createElement('a')，要记得加''
+					var a = document.createElement('a');
+					a.href="javascript:;";
+					//单双引号必须对应（用''都用'',用""都用""）
+					a.innerHTML ='<span>选项卡</span>'+(this.index+1)+'<i>X</i>';
+					head.appendChild(a);
+					var p = document.createElement('p');
+					p.innerHTML = '内容'+(this.index+1)+'';
+					//content.appendChild(p)不要加''
+					content.appendChild(p);
+					if(a.previousElementSibling){
+						for(var j=0;j<inps.length;j++){
+							a.previousElementSibling.className = 'show';
+							p.previousElementSibling.className= '';
+						}
+						a.className = 'active';
+						p.className = 'show';
+					}else{
+						a.className = 'active';
+						p.className = 'show';
+					}
+					//点击a.firstElementChild也就是点击‘X’关闭选项卡
+					a.lastElementChild.onclick = function(){
+						if(a.className == 'active'){
+							head.removeChild(a);
+							content.removeChild(p);
+							//head下面第一个子节点
+							head.firstElementChild.className = 'active';
+							content.firstElementChild.className = 'show';
+						}else{
+							head.removeChild(a);
+							content.removeChild(p);
+						}
+					}
+					//点击选项卡切换
+					a.firstElementChild.onclick = function(){
+						var as = head.getElementsByTagName('a');
+						for(var i=0;i<as.length;i++){//应该是a的length,如果是inps.length
+							//就会报错，因为inps只有5个，是固定的，选项卡可以生成多个，所以应该是a或span的length
+							head.children[i].className='show';
+							content.children[i].className='';
+						}
+						this.parentNode.className = 'active';
+						p.className = 'show';
+					}
+					if(this.parentNode.className == 'active'){
+							return;
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

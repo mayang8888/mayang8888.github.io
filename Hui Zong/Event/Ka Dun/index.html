@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				position: absolute;
+				background: plum;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div"></div>
+		<script>
+		    var left = true;
+			 	t  = true,
+			 	right = true,
+			 	bottom = true;
+			var timerL = null;
+				timerT = null,
+				timerR = null,
+				timerB = null;
+			 div = document.getElementById('div');
+			document.onkeydown = function(ev){
+				if(ev.keyCode == '37'){//左
+					if(left){
+						left = !left;
+						timerL = setInterval(function(){
+							div.style.left = div.offsetLeft-5+'px';
+						})
+						
+					}
+				}else if(ev.keyCode == '38'){//上
+					if(t){
+						t = !t;
+						timerT = setInterval(function(){
+							div.style.top = div.offsetTop-5+'px';
+						})
+					}
+				}else if(ev.keyCode == '39'){//右
+					if(right){
+						right = !right;
+						timerR = setInterval(function(){
+							div.style.left = div.offsetLeft+5+'px';
+						})
+					}
+				}else if(ev.keyCode == '40'){//下
+					if(bottom){
+						
+						timerB = setInterval(function(){
+							div.style.top = div.offsetTop+5+'px';
+						})
+						bottom = !bottom;
+					}
+				}
+				
+			}
+			document.onkeyup = function(ev){
+				var Even = ev || event;
+				if(Even.keyCode == '37'){
+					left = true;
+					clearInterval(timerL);
+				}else if(Even.keyCode == '38'){
+					t = true;
+					clearInterval(timerT);
+				}else if(Even.keyCode == '39'){;
+					right = true;
+					clearInterval(timerR);
+				}else if(Even.keyCode == '40'){
+					bottom = true;
+					clearInterval(timerB);
+				}
+			}
+		</script>
+	</body>
+</html>

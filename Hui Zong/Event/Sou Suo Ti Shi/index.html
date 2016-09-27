@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+		    #box{
+		    	width: 405px;
+		    	margin: 100px auto;
+		    }
+			input{
+				width: 400px;
+				height: 30px;
+			}
+			ul{
+				display: none;
+			}
+			li{
+				list-style: none;
+				width: 400px;
+				line-height: 30px;
+				background: #00A786;
+				font-size: 18px;
+				border: 2px solid white;
+			}
+			li:hover {
+				background: pink;
+			}
+			a{
+				text-decoration: none;
+				color: #000000;
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			#list .active{
+				background: #545C67;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input type="text" id="txt" value=""/>
+			<ul id="list">
+				<li><a href="javascript:;">《暮光之城1》</a></li>
+		        <li><a href="javascript:;">《 暮光之城2》</a></li>
+		        <li><a href="javascript:;">《 暮光之城3》</a></li>
+		        <li><a href="javascript:;">《 霍比特人》</a></li>
+		        <li><a href="javascript:;">《 心理罪 城市之光》</a></li>
+		        <li><a href="javascript:;">《地球往事》</a></li>
+		        <li><a href="javascript:;">《黑暗森林》</a></li>
+		        <li><a href="javascript:;">《死神永生》</a></li>
+		        <li><a href="javascript:;">《乡村教师》</a></li>
+		        <li><a href="javascript:;">《地球大炮》</a></li>
+			</ul>
+		</div>
+		<script>
+			var txt = document.getElementById('txt');
+			var list = document.getElementById('list');
+			var lis = list.getElementsByTagName('li');
+			var as = list.getElementsByTagName('a');
+			var onoff =  true;
+			var num = -1;
+			var num1 = as.length;
+			var timer1 = null;
+			var timer2 = null;
+			txt.onfocus = function(){
+				list.style.display = 'block';
+				xuanze();
+			}
+			//点击单选选择
+			function xuanze(){
+				for(var i=0;i<as.length;i++){
+					as[i].onclick = function(){
+						if(onoff){
+							txt.value = this.innerHTML;
+							this.parentNode.className = 'active';
+							list.style.display = '';
+							onoff = false;
+						}else if(!onoff){
+							for(var j=0;j<as.length;j++){
+								as[j].parentNode.className = '';
+							}
+							txt.value = txt.value.split(this.innerHTML).join('');
+							this.parentNode.className == '';
+							list.style.display = '';
+							onoff = true;
+						}
+					}	
+				}
+			}
+			document.onkeydown = function(ev){
+				//多选
+				if(ev.keyCode == '17'){
+					for(var i=0;i<as.length;i++){
+						as[i].onclick= function(){
+							if(this.parentNode.className == ''){
+								txt.value += this.innerHTML;
+								this.parentNode.className = 'active';
+							}else{
+								this.parentNode.className = '';
+								txt.value = txt.value.split(this.innerHTML).join('');
+							}
+							
+						}	
+					}
+				}
+				//下键（40）键选择
+				if(ev.keyCode == '40'){
+					//debugger
+					for(var i=0;i<as.length;i++){
+						lis[i].className='';
+					}
+					timer1 = setTimeout(
+						function(){
+							if(num >= as.length){
+								return;
+							}
+							lis[num].className = 'active';
+						},30)
+						num++;
+//						if(num > as.length){
+//							num = 0;
+//						}	
+						num%=as.length;
+				}
+				//上键（38）
+				if(ev.keyCode == '38'){
+					//debugger
+					for(var i=0;i<as.length;i++){
+						lis[i].className='';
+					}
+					num--;
+					timer2 = setTimeout(
+						function(){
+							//debugger
+							if(num <0){
+								return;
+							}
+							lis[num].className = 'active';
+						},30)
+						if(num < 0){
+							num = as.length-1;
+						}	
+				}
+				//按“回车键”
+				if(ev.keyCode == '13'){
+					txt.value = as[num].innerHTML;
+				}
+			}
+			document.onkeyup = function(){
+				clearTimeout(timer1);
+				clearTimeout(timer2);
+			}
+			
+		</script>
+	</body>
+</html>

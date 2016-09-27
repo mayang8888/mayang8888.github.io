@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			margin: 0;
+		}
+		#left{
+			width: 450px;
+			height: 450px;
+			position: relative;
+			float: left;
+		}
+		#move{
+			width: 100px;
+			height: 100px;
+			background: yellow;
+			opacity: .5;
+			position: absolute;
+			top: 0;
+			cursor: move;
+			display: none;
+		}
+		#right{
+			width: 500px;
+			height: 500px;
+			float: left;
+			display: none;
+			overflow: hidden;
+			position: relative;
+		}
+		#right img{
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="left">
+		<img src="img/1.jpg" alt="">
+		<div id="move"></div>
+	</div>
+	<div id="right">
+		<img src="img/2.jpg" alt="">
+	</div>
+	<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
+	<script type="text/javascript">
+	//右边最大移动范围
+		var rMaxX = $('#right').innerWidth() - $('#right img').outerWidth();
+		var rMaxY = $('#right').innerHeight() - $('#right img').outerHeight();
+	//移入显示，移出隐藏。
+		$('#left').hover(function(){
+			$('#move,#right').show();
+		},function(){
+			$('#move,#right').hide();
+		});
+		//放大镜实现
+		$('#left').mousemove(function(ev) {
+			//move的位置
+			var x = ev.clientX - $('#move').outerWidth()/2;
+			var y = ev.clientY - $('#move').outerHeight()/2;
+			//#move最大移动位置
+			var maxX = $(this).innerWidth() - $('#move').outerWidth();
+			var maxY = $(this).innerHeight() - $('#move').outerHeight();
+			//范围限制。
+			if(x<0){
+				x = 0;
+			}
+			if(y<0){
+				y = 0;
+			}
+			if(x>maxX){
+				x = maxX;
+			}
+			if(y>maxY){
+				y = maxY;
+			}
+			//计算移动的比例。
+			var scaleY = y/maxY;
+			var scaleX = x/maxX;
+			//计算右边图片移动的位置。
+			$('#right img').css({
+				left:-scaleX*rMaxX,
+				top:-scaleY*rMaxY
+			});
+			//移动#move
+			$('#move').css({
+				left:x,
+				top:y
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,524 @@
+body,h1,h2,h3,h4,h5,h6,p,dl,dt,dd,ul,ol,li,form,th,td{
+	margin:0;
+	padding:0;
+}
+ul,ol{
+	list-style:none;
+}
+a{
+	text-decoration:none;
+	color: #000;
+}
+img{
+	border:0;
+	vertical-align: top;
+}
+form{
+	margin:0;
+}
+input{
+	padding:0;
+	margin:0;
+}
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clearFix:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+html{
+	height: 100%;
+	overflow: hidden;
+}
+body{
+	height: 100%;
+	overflow: auto;
+	background: #eee;
+}
+header{
+	width: 100%;
+	height: 1.6rem;
+	padding-left: 0.575rem;
+	padding-top: 0.225rem;
+	background: #f9c100;
+	position: absolute;
+	left: 0;
+	top: 0;
+	float: left;
+}
+.top1{
+	width: 0.8rem;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	margin-right: 0.625rem;
+}
+.top1 a{
+	float: left;
+	height: 1.6rem;
+}
+.top1 .type,.top2 .type{
+	height: 0.75rem;
+	font-size: 0.4rem;
+	line-height: 0.75rem;
+	background: #f9c100;
+}
+.top1 span,.top1 img,.top2 span,.top2 img{
+	float: left;
+}
+.top1 span img{
+	width: 0.8rem;
+	height: 0.8rem;
+}
+.top2 span img{
+	width: 0.825rem;
+	height: 0.85rem;
+}
+form{
+	height: 1.25rem;
+	padding-top: 0.1rem;
+	position: relative;
+}
+form input{
+	float: left;
+	width: 10.7rem;
+	height: 1.25rem;
+	line-height: 1.25rem;
+	border: none;
+	border-radius: 0.3rem;
+	margin-right: 0.425rem;
+	font-size: 0.45rem;
+	color: #b6aa9c;
+	padding-left: 1.225rem;
+	background:#fcf3cc;
+}
+form i{
+	width: 0.6rem;
+	height: 0.9rem;
+	background:url(../img/sousuo.gif) no-repeat;
+	position: absolute;
+	left: 0.4rem;
+	top: 0.3rem;
+	background-size: 100%;
+}
+.top2{
+	width: 0.8rem;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	width: 1.25rem;
+	height: 1.6rem;
+}
+section{
+	width: 100%;
+	padding-top: 1.825rem;
+}
+#ad{
+	height: 6rem;
+	width: 100%;
+}
+#ad img{
+	width: 100%;
+}
+.type{
+	width: 100%;
+	height: 6.65rem;
+	background: #fff;
+}
+.type li{
+	width: 3.2rem;
+	height: 2.8rem;
+	padding-top: 0.525rem;
+	text-align: center;
+	float: left;
+}
+.type li img{
+	width: 1.65rem;
+	height: 1.675rem;
+}
+.type li span{
+	height: 1.125rem;
+	line-height: 1.125rem;
+	font-size: 0.45rem;
+	display: block;
+}
+/*苏宁头条*/
+#ad1{
+	width: 100%;
+	height: 1.8rem;
+	padding-top: 0.5rem;
+	background: #fff;
+}
+#ad1 img{
+	width: 3.575rem;
+	height: 1rem;
+	margin-top: 0.35rem;
+}
+#ad1 a{
+	font-size: 0.5rem;
+}
+.ad1-c{
+	color: #b7b7b7;
+}
+#ad1 p{
+	height: 0.65rem;
+	line-height: 0.65rem;
+}
+#ad1 i{
+	width: 0.225rem;
+	height: 0.2rem;
+	background: url(../img/dian.gif) no-repeat;
+	background-size: 100%;
+	float: left;
+	margin-top: 0.225rem;
+	margin-left: 0.8rem;
+}
+.ad1-1{
+	margin-top: 0.1rem;
+}
+/*掌上抢*/
+#ad2{
+	width: 100%;
+}
+.ad2-content{
+	width: 15.6rem;
+	height: 7.25rem;
+	padding-left: 0.4rem;
+	background: #fff;
+	margin-top: 0.525rem;
+}
+.ad2-content div{
+	width: 100%;
+	height: 1.35rem;
+	padding-top: 0.15rem;
+}
+.ad2-content .ad2-content1{
+	width: 3.2rem;
+	height: 1.175rem;
+}
+.ad2-content .ad2-content1 img{
+	width: 3.2rem;
+	height: 1.175rem;
+}
+.ad2-content .ad2-content2{
+	width: 4.8rem;
+	height: 1.175rem;
+}
+.ad2-content .ad2-content2 img{
+	width: 4.8rem;
+	height: 1.175rem;
+}
+.ad2-content .ad2-content3{
+	width: 2.775rem;
+	height: 0.7rem;
+	padding-top: 0.3rem;
+	margin-right: 0.55rem;
+}
+.ad2-content .ad2-content3 img{
+	width: 2.775rem;
+	height: 0.9rem;
+}
+.ad2-content ul{
+	width: 100%;
+	#f9c100
+}
+.ad2-content ul li{
+	width: 4.825rem;
+	height: 5.075rem;
+	margin-right: 0.2rem;
+	float: left;
+}
+.ad2-content li img{
+	width: 4.825rem;
+	height: 5.075rem;
+}
+/*手机*/
+#ad3{
+	width: 100%;
+	margin-top: 0.525rem;
+}
+.ad3-top,.ad3-top img{
+	width: 16rem;
+	height: 0.45rem;	
+}
+.ad3-content1,.ad3-content2{
+	width: 7.975rem;
+	height: 6.4rem;
+}
+.ad3-content1{
+	border-right: 0.05rem solid #eee;
+	border-bottom: 0.05rem solid #eee;
+}
+.ad3-content1 img,.ad3-content2 img{
+	width: 7.975rem;
+	height: 6.4rem
+}
+.ad3-content2{
+	border-bottom: 0.05rem solid #eee;
+}
+.ad3-content3{
+	border-right: 0.05rem solid #eee;
+}
+.ad3-content3,.ad3-content4{
+	width: 7.975rem;
+	height: 5.125rem;
+}
+.ad3-content3 img,.ad3-content4 img{
+	width: 7.975rem;
+	height: 5.125rem;
+}
+/*大聚会精编*/
+#ad4{
+	width: 100%;
+	margin-top: 0.525rem;
+}
+.ad4-top1,.ad6-1,.ad7-1,.ad8-1{
+	width: 16rem;
+	height: 1.3rem;
+	line-height: 1.3rem;
+	text-align: center;
+	font-size: 0.65rem;
+	color: #ee2b4e;
+	font-weight: bold;
+	border-bottom: 2px solid #eee;
+	background: #fff;
+}
+.ad4-top2-left,.ad4-top2-left img{
+	width: 7.9rem;
+	height: 8.55rem;
+	border-right: 0.05rem solid #eee;
+}
+.ad4-top2-right {
+	width: 8rem;
+	height: 8.55rem;
+}
+.ad4-top2-right1,.ad4-top2-right1 img{
+	width: 8rem;
+	height: 3.075rem;
+}
+.ad4-top2-right1{
+	border-bottom:0.05rem solid #eee;
+}
+.ad4-top2-right2,.ad4-top2-right3,.ad4-top2-right2 img,.ad4-top2-right3 img{
+	width: 4rem;
+	height: 5.425rem;
+}
+/*好奇*/
+.ad5-1{
+	width: 100%;
+	height: 4.35rem;
+	margin-top: 0.525rem;
+}
+.ad5-1 img{
+	width: 16rem;
+	height: 4.35rem;
+}
+#ad6{
+	width: 100%;
+	margin-top: 0.525rem;
+}
+#ad6 .ad6-1{
+	color: #68a14f;
+}
+.ad6-2{
+	width: 16rem;
+	height: 15.55rem;
+}
+.ad6-2-l{
+	width: 7.975rem;
+	height: 15.55rem;
+	border-right: 2px solid #eee;
+}
+.ad6-2-r{
+	width: 7.975rem;
+	height: 15.55rem;
+	border-bottom: 0.05rem solid #eee;
+}
+.ad6-2-l-1,.ad6-2-l-1 img{
+	width: 7.975rem;
+	height: 6.2rem;
+}
+.ad6-2-l-2,.ad6-2-l-4{
+	width: 7.975rem;
+	height: 3.05rem;
+	border-bottom: 0.05rem solid #eee;
+}
+.ad6-2-l-3{
+	width: 7.975rem;
+	height: 3.1rem;
+	border-bottom: 0.05rem solid #eee;
+}
+.ad6-2-l-2 img,.ad6-2-l-3 img,.ad6-2-l-4 img{
+	width: 7.975rem;
+	height: 3.05rem;
+}
+.ad6-2-r li,.ad6-2-r li img{
+	width: 7.975rem;
+	height: 3.06rem;
+	border-bottom: 0.05rem solid #eee;
+}
+.ad6-2-r .bn{
+	border: none;
+}
+/*热门市场*/
+#ad7{
+	width: 100%;
+	margin-top: 0.525rem;
+}
+#ad7 .ad7-1,#ad9 .ad7-1{
+	color: #73b0d1;
+}
+.ad7-2 li{
+	width: 8rem;
+	height: 6.425rem;
+	border-bottom: 0.05rem solid #eee;
+	float: left;
+}
+.ad7-2 img{
+	width: 8rem;
+	height: 6.425rem;
+}
+.ad7-3 li,.ad7-3 li img{
+	width: 5.275rem;
+	height: 5.15rem;
+}
+.ad7-3 li{
+	float: left;
+	border-bottom: 0.05rem solid #eee;
+	border-right: 0.05rem solid #eee;
+}
+/*品牌荟萃*/
+#ad8{
+	width: 100%;
+	margin-top: 0.525rem;
+}
+#ad8 .ad8-1{
+	color: #6925d0;
+}
+.ad8-2-1,.ad8-2-1 img,.ad9-2-1,.ad9-2-1 img{
+	width: 7.95rem;
+	height: 6.175rem;
+}
+.ad8-2-1,.ad8-2-1{
+	border-bottom: 0.05rem solid #eee;
+	border-right: 0.05rem solid #eee;
+}
+.ad8-2-2{
+	border-bottom: 0.05rem solid #eee;
+}
+.ad8-2-2 div,.ad8-2-2 div img{
+	width: 3.95rem;
+	height: 6.175rem;
+}
+.ad8-2-2 div{
+	float: left;
+}
+/*苏宁金融*/
+#ad9{
+	width: 100%;
+	margin-top: 0.525rem;
+}
+.ad9-2-2 div,.ad9-2-2 div img{
+	width: 7.975rem;
+	height: 3.075rem;
+}
+.ad9-2-2 div{
+	border-bottom: 0.05rem solid #eee;
+}
+/*好店推荐*/
+#ad10{
+	width: 100%;
+	margin-top: 0.525rem;
+	background: #fff;
+}
+#ad10 .ad7-1{
+	color: #764d44;
+}
+.ad10-1,.ad10-2{
+	width: 7.8rem;
+	height: 7.65rem;
+	float: left;
+}
+.ad10-2-top,.ad10-1-top{
+	width: 7.575rem;
+	height: 2.75rem;
+	margin-left: 0.425rem;
+}
+.ad10-2-top img,.ad10-1-top img{
+	width: 7.575rem;
+	height: 2.75rem;
+}
+.ad10-1-content1,.ad10-1-content1 img,.ad10-2-content1,.ad10-2-content1 img{
+	width: 4.85rem;
+	height: 4.85rem;
+}
+.ad10-1-content1,.ad10-2-content1{
+	border: 0.05rem solid #eee;
+	margin-left: 0.425rem;
+}
+.ad10-1-content li,.ad10-1-content li img,.ad10-2-content li,.ad10-2-content li img{
+	width: 2.3rem;
+	height: 2.3rem;
+}
+.ad10-1-content li,.ad10-2-content li{
+	border: 0.05rem solid #eee;
+	margin-left: 0.02rem;
+}
+.ad10-1-content ul li,.ad10-2-content ul li{
+	margin-bottom: 0.15rem;
+}
+.d{
+	text-align: center;
+}
+/*猜你喜欢*/
+.like{
+	width: 100%;
+	height: 59.65rem;
+}
+.like1,.like1 img{
+	width: 15.125rem;
+	height: 1.9rem;
+	margin: 0 auto;
+}
+.like li,.like li img{
+	width: 7.35rem;
+	height: 10.375rem;
+}
+.like li{
+	float: left;
+	margin-left: 0.425rem;
+	margin-bottom: 0.425rem;
+}
+.like2,.like2 img{
+	width: 16rem;
+	height: 3.2rem;
+}
+/*脚部*/
+footer{
+	width: 100%;
+	height: 4.725rem;
+}
+.land{
+	width: 16rem;
+	height: 2.075rem;
+	line-height:  2.075rem;
+}
+.land a{
+	font-size: 0.55rem;
+	padding-left: 0.425rem;
+	padding-right: 0.3rem;
+}
+.land span{
+	font-size: 0.55rem;
+}
+.message{
+	width: 16rem;
+	height: 1.275rem;
+	line-height: 1.275rem;	
+	color: #929292;
+	font-size: 0.55rem;
+	text-align: center;
+}
